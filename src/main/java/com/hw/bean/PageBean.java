@@ -7,28 +7,35 @@ public class PageBean<T> implements Serializable {
 
 	private static final long serialVersionUID = 1598337595992111592L;
 
-	private int currPageNum;
-	private int maxPageNum;
-	private int currPageSize;
-	private Long maxPageSize;
+	private int pageIndex;
+	private int pageCount;
+	private int pageSize;
+	private Long totalCount;
 	private List<T> list;
-	public int getCurrPageNum() {
-		return currPageNum;
+	
+	public int getPageIndex() {
+		return pageIndex;
 	}
-	public void setCurrPageNum(int currPageNum) {
-		this.currPageNum = currPageNum;
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
 	}
-	public int getMaxPageNum() {
-		return maxPageNum;
+	public int getPageCount() {
+		return pageCount;
 	}
-	public void setMaxPageNum(int maxPageNum) {
-		this.maxPageNum = maxPageNum;
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
-	public Long getMaxPageSize() {
-		return maxPageSize;
+	public int getPageSize() {
+		return pageSize;
 	}
-	public void setMaxPageSize(Long maxPageSize) {
-		this.maxPageSize = maxPageSize;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public Long getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(Long totalCount) {
+		this.totalCount = totalCount;
 	}
 	public List<T> getList() {
 		return list;
@@ -36,15 +43,5 @@ public class PageBean<T> implements Serializable {
 	public void setList(List<T> list) {
 		this.list = list;
 	}
-	public int getCurrPageSize() {
-		return currPageSize;
-	}
-	public void setCurrPageSize(int currPageSize) {
-		this.currPageSize = currPageSize;
-	}
-	@Override
-	public String toString() {
-		return "PageBean [currPageNum=" + currPageNum + ", maxPageNum=" + maxPageNum + ", currPageSize=" + currPageSize
-				+ ", maxPageSize=" + maxPageSize + ", list=" + list + "]";
-	}
+	
 }

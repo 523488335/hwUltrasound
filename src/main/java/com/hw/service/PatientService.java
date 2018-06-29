@@ -23,8 +23,6 @@ import com.hw.exception.HwException;
 import com.hw.model.Patient;
 import com.hw.model.PatientData;
 
-import net.bytebuddy.asm.Advice.Return;
-
 @Service
 public class PatientService {
 
@@ -79,13 +77,13 @@ public class PatientService {
 	public PageBean<Patient> getPageBean(Page<Patient> page){
 		System.out.println();
 		PageBean<Patient> pageBean = new PageBean<>();
-		pageBean.setCurrPageNum(page.getNumber() + 1);
-		pageBean.setCurrPageSize(page.getNumberOfElements());
-		pageBean.setMaxPageNum(page.getTotalPages());
-		pageBean.setMaxPageSize(page.getTotalElements());
+		pageBean.setPageIndex(page.getNumber() + 1);
+		pageBean.setPageSize(page.getNumberOfElements());
+		pageBean.setPageCount(page.getTotalPages());
+		pageBean.setTotalCount(page.getTotalElements());
 		pageBean.setList(page.getContent());
 		System.out.println(pageBean);
-		lastPageNum = pageBean.getMaxPageNum() - 1;
+		lastPageNum = pageBean.getPageCount() - 1;
 		return pageBean;
 	}
 	
@@ -136,6 +134,6 @@ public class PatientService {
 				return criteriaBuilder.and(predicates);
 			}
 		};
-		return getCurrPage();
+		return getFristPage();
     }
 }

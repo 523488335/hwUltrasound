@@ -189,7 +189,7 @@ $(function() {
 		success: function(data) {
 			console.log(data);
 			for (var i = 0; i < data.length; i++) {
-				showImage(data[i],data[i].left == true ? "left" : "right", data[i].path);
+				showImage(data[i].imageId,data[i].left == true ? "left" : "right", data[i].path);
 			}
 		},
 	})
@@ -276,12 +276,19 @@ function ViewModel() {
 			
 			if(deletePosition === "left") {
 				$(".right-content .img-content-left").find("img")[index].remove();
-				imgLeftArr.splice(index,1);
+				obj = imgLeftArr.splice(index,1)[0];
 			} else {
 				$(".right-content .img-content-right").find("img")[index].remove();
-				imgRightArr.splice(index,1);
+				obj = imgRightArr.splice(index,1)[0];
 			}
-			
+			console.log(obj)
+			$.ajax({
+				url:"deleteImageById",
+				data:{'imageId':obj.id},
+				type: "POST",
+				async:true,
+				dataType:"json"
+			})
 		} else {
 			console.log("右侧没有缩略图");
 		}
@@ -643,8 +650,9 @@ function showImage(id,position,src) {
      * isLeftOrRight 是截左边的图还是右边的
      * */
     var obj = {
+    	id:id,
 		imgSource: image,
-		captureTime: getCurrentTime(),
+		captureTime: getCurrentTime(id),
 		isLeftOrRight: position
 	}
     

@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,7 +15,6 @@ public class Image implements Serializable{
 
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long imageId;
 	
 	@Column
@@ -71,4 +68,11 @@ public class Image implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	@Override
+	public String toString() {
+		return "Image [imageId=" + imageId + ", patientDataId=" + patientDataId + ", isLeft=" + isLeft + ", path="
+				+ path + ", type=" + type + "]";
+	}
+	
 }

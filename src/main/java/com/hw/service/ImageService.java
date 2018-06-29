@@ -78,4 +78,11 @@ public class ImageService {
 			}
 		});
 	}
+	
+	/**
+	 * 删除图片byID
+	 */
+	public void deleteImageById(Long id){
+		imageMapper.deleteById(id);
+	}
 }

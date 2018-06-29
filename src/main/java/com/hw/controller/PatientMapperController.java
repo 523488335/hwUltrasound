@@ -136,13 +136,26 @@ public class PatientMapperController {
     }
     
     /**
+     *      url：deleteImageById
+     *      参数：int imageId
+     *      返回：根据检查时间，返回一个患者的所有信息（填充信息模态框）
+     */
+    @RequestMapping("deleteImageById")
+    public Object deleteImageById(Image image){
+        System.out.println("------------删除id："+image.getImageId()+"的图片------------------------");
+        imageService.deleteImageById(image.getImageId());
+        return "true";
+    }
+    
+    /**
      *      url：/-Saveimg
      *      参数：String canvas,int PatientDataId,boolean isLeft
      *      返回：保存缩略图
      */
 	@RequestMapping("saveImg")
-    public void saveOriginalImg(Image image) throws IOException {
+    public Object saveOriginalImg(Image image) throws IOException {
 		imageService.saveOriginalImg(image);
+		return "true";
 	}
 	
 	/**
@@ -151,8 +164,9 @@ public class PatientMapperController {
      *      返回：保存缩略图
      */
 	@RequestMapping("saveProcessedImg")
-    public void saveProcessedImg(Image image) throws IOException {
+    public Object saveProcessedImg(Image image) throws IOException {
 		imageService.saveProcessedImg(image);
+		return "true";
 	}
 }
 

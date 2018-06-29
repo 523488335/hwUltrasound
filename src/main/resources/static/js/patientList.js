@@ -14,6 +14,15 @@ $(function() {
 //			};
 //		}
 //	});
+	function patientList(data) {
+		vm.pageIndex(data.pageIndex);
+		vm.pageCount(data.pageCount);
+		vm.pageSize(data.pageSize);
+		vm.totalCount(data.totalCount);
+		for (let i = 0; i<data.list.length; i++){
+			$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
+		};
+	}
 	/**
 	 *	获取病人信息
 	 * */
@@ -24,10 +33,7 @@ $(function() {
 		async:true,
 		dataType:"json",
 		success:function (data) {
-			vm.currPageNum(data.currPageNum);
-			for (let i = 0; i<data.list.length; i++){
-				$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
-			};
+			patientList(data);
 		}  
 	});
 
@@ -48,13 +54,9 @@ $(function() {
 			dataType:"json",
 			async:true,
 			success:function (data) {
-				vm.currPageNum(data.currPageNum);
 				$(".palist").empty();
 				$(".history").empty();
-				for (let i = 0; i<data.length; i++){
-					$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
-				};
-				console.log(data)
+				patientList(data);
 			},
 		})
 	})
@@ -67,12 +69,9 @@ $(function() {
 			async:true,
 			dataType:"json",
 			success:function (data) {
-				vm.currPageNum(data.currPageNum);
 				$(".palist").empty();
 				$(".history").empty();
-				for (let i = 0; i<data.list.length; i++){
-					$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
-				};
+				patientList(data);
 			}
 		});
 	}
@@ -83,12 +82,9 @@ $(function() {
 			async:true,
 			dataType:"json",
 			success:function (data) {
-				vm.currPageNum(data.currPageNum);
 				$(".palist").empty();
 				$(".history").empty();
-				for (let i = 0; i<data.list.length; i++){
-					$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
-				};
+				patientList(data);
 			}
 		});
 	})
@@ -99,12 +95,9 @@ $(function() {
 			async:true,
 			dataType:"json",
 			success:function (data) {
-				vm.currPageNum(data.currPageNum);
 				$(".palist").empty();
 				$(".history").empty();
-				for (let i = 0; i<data.list.length; i++){
-					$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
-				};
+				patientList(data);
 			}
 		});
 	}
@@ -115,12 +108,9 @@ $(function() {
 			async:true,
 			dataType:"json",
 			success:function (data) {
-				vm.currPageNum(data.currPageNum);
 				$(".palist").empty();
 				$(".history").empty();
-				for (let i = 0; i<data.list.length; i++){
-					$(".palist").append("<tr><td>"+data.list[i].patientId+"</td><td class=''><a class='updated' data.list-id='"+data.list[i].patientId+"'>"+data.list[i].name+"</a></td><td>"+data.list[i].sex+"</td><td>"+data.list[i].birthday+"</td><td>"+data.list[i].phone+"</td><td>"+data.list[i].address+"</td></tr>");
-				};
+				patientList(data);
 			}
 		});
 	}
@@ -254,12 +244,10 @@ function ViewModel() {
 	// 分页
 	self.pageSize = ko.observable(10); // 每页呈现条数
 	self.pageIndex = ko.observable(); // 要访问的页面
-	self.pageCount = ko.observable(1); // 总页数
+	self.pageCount = ko.observable(); // 总页数
 	self.allPages = ko.observableArray([]); // 页码
 	self.totalCount = ko.observable(1); // 总共多少条数据
 	
-	self.currPageNum = ko.observable(1);
-
 	self.refresh = function() {
 		// 获取所有的查询参数
 		var searchParameter = "?name="+self.name()+"&sex="+self.selectedSex()+"&doctor="+self.doctor()+
