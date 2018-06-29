@@ -1,0 +1,108 @@
+body {
+    background-color: #f7f7f7;
+}
+.panel {
+    border-radius: 0;
+}
+/*查询条件、用户ID、注销*/
+.panel-left{
+    float: left;
+}
+.panel-right{
+    float: right;
+    font-size: 13px;
+}
+.panel-in{
+    float: right;
+    margin-right: 20px;
+    color: #000000;
+    font-size: 13px;
+}
+.panel-right-a{
+    color: red;
+    cursor: pointer;
+}
+.panel .panel-heading {
+    font-size: 18px;
+    line-height: 18px;
+    padding: 10px 6px;
+    border-bottom: #e5ebee 1px solid;
+    border-left: #5c92eb 4px solid;
+    color: #5c92eb;
+    border-radius: 0;
+}
+.lead-panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+}
+.lead-panel .filter-panel .row:last-child .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.lead-panel .filter-panel .control-label {
+    padding-top: 6px;
+    font-size: 12px;
+    margin-bottom: 0;
+    text-align: right;
+}
+.lead-panel .filter-panel .form-control {
+    padding: 5px 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    border-radius: 0;
+}
+.search-btn button {
+    border-radius: 0;
+}
+.panel table tr {
+    /*text-align: left;*/
+}
+.panel table tr th {
+    color: #FFF;
+    font-weight: 500;
+    background: #5c92eb;
+}
+.table-condensed>tbody>tr>td,
+.table-condensed>tbody>tr>th,
+.table-condensed>tfoot>tr>td,
+.table-condensed>tfoot>tr>th,
+.table-condensed>thead>tr>td,
+.table-condensed>thead>tr>th {
+    padding: 5px !important;
+}
+
+/*分页*/
+.page-wrapper {
+    margin-top: 20px;
+}
+.data-info {
+    height: 35px;
+    line-height: 35px;
+}
+.pagination {
+    margin: 0;
+    border-radius: 0;
+}
+.pagination>li {
+    display: inline;
+}
+.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
+    border-radius: 0;
+}
+.pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
+    border-radius: 0;
+}
+.pagination>li>a, .pagination>li>a,
+.pagination-sm>li>a, .pagination-sm>li>a {
+    border-radius: 0;
+}
+
+/*病人信息列表信息*/
+.updated:hover{
+    cursor:pointer;
+}

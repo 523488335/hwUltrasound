@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>瀚维智能乳腺筛查系统</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<!--日期插件-->
+	<link rel="stylesheet" href="css/jquery.datetimepicker.css" />
+	<!--视频播放插件-->
+	<link rel="stylesheet" href="css/video-js.min.css" />
+	<!--图片标记插件-->
+	<link rel="stylesheet" href="css/jquery.imageLabel.min.css" />
+	<link rel="stylesheet" href="css/edit.css" />
+	<!--图片标记插件 end-->
+	<link rel="stylesheet" href="css/main.css" />
+	<!-- 滑动条样式 -->
+	<link type="text/css" href="css/slide-style.css" rel="stylesheet" />
+	<style type="text/css">
+
+		/*隐藏中间播放按钮*/
+		.vjs-big-play-button {
+			visibility: hidden;
+		}
+		/*隐藏音量按钮--我们的项目应该没有声音*/
+		.vjs-control-bar .vjs-volume-panel {
+			display: none;
+		}
+		/*隐藏视频左下角的播放按钮*/
+		.vjs-control-bar .vjs-play-control {
+			display: none;
+		}
+		.video-js .vjs-time-control {
+			display: block;
+		}
+		.vjs-has-started .vjs-user-inactive .vjs-playing .vjs-control-bar {
+			opacity: 1 !important;
+		}
+
+		/*弹出层的*/
+		#imgform {
+			margin: 0 auto;
+			width: 500px;
+		}
+		/*隐藏输入框*/
+		/*.imageLabel-input-box {
+            display: none;
+        }*/
+		/*保证截图时，编辑的区域是可见额*/
+		.imageLabel-imgdrop {
+			background: transparent !important;
+		}
+		/*保证截图的标记边框是红色的*/
+		.imageLabel-imgdrop.imageLabel-drop-edit {
+			border: 2px solid red;
+		}
+		/*第二次的标记框*/
+		.imageLabel-imgdrop {
+			border: 2px solid red;
+		}
+		/*修改文字位置*/
+		.imageLabel-drop-edit .imageLabel-imgdrop-font {
+			width: auto !important;
+			height: auto !important;
+			left: 0;
+			top: 0;
+			padding-left: 6px;
+		}
+		.return {
+			cursor: pointer;
+		}
+		.return a {
+			text-decoration:none;
+		}
+	</style>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--顶部-->
+	<div class="row top-bg">
+		<div class="col-sm-4 col-md-4 col-lg-4  return">
+			<a href="patientList.html">
+				<i class="fa fa-mail-reply"></i>
+				<span>返回列表</span>
+			</a>
+		</div>
+		<div class="col-sm-5 col-md-4 col-lg-3 text-center">
+			<span data-bind="text:checkTitlte">C5-2Fs</span>
+			<span data-bind="text:checkPosition">腹部</span>
+			<span class="time"></span>
+		</div>
+		<div class="col-sm-3 col-md-4 col-lg-5 text-right">
+			<div class="top-icon-list">
+				<i class="fa fa-wifi"></i>
+				<i class="fa fa-question-circle"></i>
+				<i class="fa fa-gear"></i>
+				<i class="fa fa-desktop"></i>
+			</div>
+		</div>
+	</div>
+	<!--顶部结束-->
+
+	<!--中间内容-->
+	<div class="row middle-bg row-flex">
+		<!--这里放之前的内容-->
+
+		<!--信息面板-->
+		<div class="col-sm-2 col-md-2 col-lg-1  tips-pane  clear-padding-left">
+			<div>&#91;B1&#93;</div>
+			<div class="tips-item clearfix">
+				<label for="">频率</label><span>2.0MHz</span>
+			</div>
+			<div class="tips-item clearfix">
+				<label for="">动态范围</label><span>30</span>
+			</div>
+			<div class="tips-item clearfix">
+				<label for="">增益</label><span>0</span>
+			</div>
+			<div class="tips-item clearfix">
+				<label for="">帧率</label><span>23</span>
+			</div>
+			<div class="tips-item clearfix">
+				<label for="">深度</label><span>3.0</span>
+			</div>
+		</div>
+		<!--信息面板结束-->
+
+		<!--图像显示面板 开始-->
+		<div class="col-sm-8 col-md-8 col-lg-9 whiteLine clear-padding-right">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<div class="image-header-info text-center">
+						<span class="info-1">AP10%</span>
+						<span class="info-2">MI0.9TIB0.3</span>
+					</div>
+				</div>
+			</div>
+			<!--实时图像开始-->
+			<div class="row image-online">
+				<div class="col-sm-6 sol-md-5 col-lg-6 clear-padding-right padding-left-10">
+					<div class="caption">
+						<h5 class="text-center">左侧视图</h5>
+					</div>
+					<div class="thumbnail">
+						<video id="videoTag-left" class="video-js vjs-default-skin vjs-big-play-centered" data-setup='{}' height="400">
+
+
+							<!--<source id="videoSourceid" type="video/mp4"></source>-->
+							<p class="vjs-no-js">
+								To view this video please enable JavaScript, and consider upgrading to a web browser that
+								<a href="http://videojs.com/html5-video-support/" target="_blank">
+									supports HTML5 video
+								</a>
+							</p>
+						</video>
+					</div>
+					<div class="text-center">
+						<div class="btn btn-lg btn-default capture-left-image" disabled>截图</div>
+					</div>
+				</div>
+				<div class="col-sm-6 sol-md-5 col-lg-6 clear-padding-left padding-10">
+					<div class="caption">
+						<h5 class="text-center">右侧视图</h5>
+					</div>
+					<div class="thumbnail">
+						<video id="videoTag-right" class="video-js vjs-default-skin vjs-big-play-centered" data-setup='{}'  height="400">
+
+							<!--<source src="./video/oceans.mp4" type="video/mp4"></source>-->
+
+							<p class="vjs-no-js">
+								To view this video please enable JavaScript, and consider upgrading to a web browser that
+								<a href="http://videojs.com/html5-video-support/" target="_blank">
+									supports HTML5 video
+								</a>
+							</p>
+						</video>
+						<!--<img src="images/timg.jpg" alt="" class="img-responsive" />-->
+					</div>
+					<div class="pull-left">
+						<button type="button" class="btn btn-primary btn-lg play-all-video playBtn" >播放</button>
+					</div>
+					<div class="text-center">
+						<div class="btn btn-lg btn-default capture-right-image" disabled>截图</div>
+					</div>
+				</div>
+			</div>
+
+			<!--<div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <button type="button" class="btn btn-primary btn-lg play-all-video playBtn" >播放</button>
+                    <button type="button" class="btn btn-default btn-lg screenshot-all-video screenshotBtn">截屏</button>
+                </div>
+            </div>-->
+
+			<!--实时图像结束-->
+		</div>
+		<!--图像显示面板 结束-->
+
+		<!--右侧缩略图-->
+		<div class="col-sm-2 col-md-2 col-lg-2 clear-padding-left clear-padding-right" style="border: 2px solid #FFF">
+			<div class="right-box right-box1">
+				<div class="right-title text-center">
+					缩略图
+				</div>
+				<div class="right-content">
+					<div class="img-content-left"></div>
+					<div class="img-content-right"></div>
+				</div>
+				<div class="right-footer">
+					<div class="text-center">
+						<i class="fa fa-chevron-down" data-bind="click:scrollToBottom"></i>
+						<i class="fa fa-chevron-up " data-bind="click:scrollToTop"></i>
+						<i class="fa fa-trash-o " data-bind="click:deleteImg"></i>
+						<i class="fa fa-download" data-bind="click:download"></i>
+					</div>
+				</div>
+			</div>
+
+			<!--缩略图的拖动条-->
+			<div class="grade_warp right-box2" style="display: none;">
+
+				<div class="User_ratings User_grade" id="div_fraction0" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title8">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar8" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn8"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction1" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title1">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar1" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn1"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction2" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title2">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar2" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn2"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction3" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title3">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar3" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn3"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction4" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title4">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar4" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn4"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction5" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title5">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar5" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn5"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction6" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title6">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar6" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn6"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+				<div class="User_ratings User_grade" id="div_fraction7" style="width: 100%;">
+					<div class="ratings_bars" style="width: 100%;">
+						<span id="title7">0</span>
+						<span class="bars_10">0</span>
+						<div class="scale" id="bar7" style="width: 7.14rem;">
+							<div></div>
+							<span id="btn7"></span>
+						</div>
+						<span class="bars_10">10</span>
+					</div>
+				</div>
+
+			</div>
+
+			<!--缩略图的拖动条 结束-->
+		</div>
+		<!--右侧缩略图结束-->
+	</div>
+	<!--中间内容-->
+</div>
+<!--按钮控制面板-->
+
+
+<div class="container-fluid control-bg">
+	<ul class="nav nav-tabs  mune-nav" style="display: block;">
+		<li class="active">
+			<a href="#features" data-toggle="tab">功能</a>
+		</li>
+		<div class="grade_warp User_ratings User_grade mune-btn3-slide nav-tabs" style="display: none;" id="div_fraction0">
+			<div class="ratings_bars">
+				<span id="title0">0</span>
+				<span class="bars_10">0</span>
+				<div class="scale" id="bar0">
+					<div class="slide"></div>
+					<span id="btn0"></span>
+				</div>
+				<span class="bars_10">10</span>
+			</div>
+		</div>
+</div>
+<div class="container-fluid panel-bg">
+	<div class="tab-content">
+		<!--功能-->
+		<div class="tab-pane fade in active" id="features">
+			<div class="row">
+				<div class="col-sm-5 col-md-5 col-lg-5">
+					<div class="btn-group btn-group-1 btn-list " role="group">
+						<button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#info">
+							<div class="circle"><i class="fa fa-user-circle fa-2x"></i></div>
+							<span class="title">信息</span>
+						</button>
+						<button class="btn btn-group-lg" type="button">
+							<div class="circle">
+								<i class="fa fa-file-text fa-2x"></i>
+							</div>
+							<span>报告</span>
+						</button>
+
+					</div>
+
+				</div>
+				<!--切换按钮-->
+				<!--<div class="col-sm-2 col-md-2 col-lg-2">-->
+					<!--&lt;!&ndash;lg&ndash;&gt;-->
+					<!--&lt;!&ndash;<div class="btn-group">-->
+                        <!--<button class="btn clear-bg xia-btn-left" type="button">-->
+                            <!--<div class="circle-middle"><i class="fa fa-chevron-left fa-2x"></i></div>-->
+                        <!--</button>-->
+                        <!--<button class="btn clear-bg xia-btn-right" type="button">-->
+                            <!--<div class="circle-middle"><i class="fa fa-chevron-right fa-2x"></i></div>-->
+                        <!--</button>-->
+                    <!--</div>&ndash;&gt;-->
+				<!--</div>-->
+
+				<!--<div class="col-sm-5 col-md-5 col-lg-5">-->
+
+					<!--<div class="btn-group btn-group-1 btn-list" style="display: block;">-->
+						<!--<button class="btn btn-group-lg" type="button" disabled="disabled">-->
+							<!--<div class="circle"><i class="fa fa-wpexplorer fa-2x"></i></div>-->
+							<!--<span>测量</span>-->
+						<!--</button>-->
+
+						<!--<button class="btn btn-group-lg" type="button" disabled="disabled">-->
+							<!--<div class="circle"><i class="fa  fa-search-plus fa-2x"></i></div>-->
+							<!--<span>放大</span>-->
+						<!--</button>-->
+					<!--</div>-->
+					<!--&lt;!&ndash;lg结束&ndash;&gt;-->
+				<!--</div>-->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!--按钮控制面板 结束-->
+
+
+<!--模态框-->
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">病人信息</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-horizontal" role="form">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 form-group">
+							<label for="name" class="col-xs-6 col-sm-5 control-label">姓名</label>
+							<div class="col-xs-6 col-sm-6">
+								<input type="text" class="form-control" id="name" disabled data-bind="value:name">
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 form-group">
+
+							<label for="patientID" class="col-xs-6 col-sm-5  control-label">病人ID</label>
+							<div class="col-xs-6 col-sm-6">
+								<input type="text" class="form-control" id="patientID" disabled data-bind="value:patientID">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 form-group">
+							<label for="sex" class="col-xs-6 col-sm-5 control-label">性别</label>
+							<div class="col-xs-6 col-sm-6">
+								<input type="text" class="form-control" disabled data-bind="value:sex"/>
+								<!--<select class="form-control">
+                                    <option value=""></option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>-->
+							</div>
+
+						</div>
+						<div class="col-xs-12 col-sm-6 form-group">
+							<label for="age" class="col-xs-6 col-sm-5  control-label">年龄</label>
+							<div class="col-xs-4 col-sm-3">
+								<input type="number" class="form-control" id="age" disabled data-bind="value:age">
+							</div>
+							<div class="col-xs-2 col-sm-3">
+								<input type="text" class="form-control" disabled value="岁"/>
+								<!--<select class="form-control">
+                                    <option value=""></option>
+                                    <option value="岁">岁</option>
+                                    <option value="月">月</option>
+                                    <option value="天">天</option>
+                                </select>-->
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 form-group">
+							<label class="control-label col-xs-6 col-sm-5">生日</label>
+							<div class="col-xs-6 col-sm-6">
+								<input type="text" class="form-control" disabled data-bind="value:birthday"/>
+								<!--<div for="birthday" class="input-group date" id="birthdayBox">
+                                    <input type="text" class="form-control" id="birthday">
+                                    <span class="input-group-addon" style="cursor: pointer">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-primary">
+					<div class="panel-heading ">乳腺</div>
+					<div class="panel-body">
+						<div class="form-horizontal" role="form">
+
+							<div class="form-group">
+								<label for="checkDesc" class="col-xs-4 col-sm-2 col-md-2 col-lg-2">检查描述</label>
+								<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+									<input type="text" class="form-control" disabled id="checkDesc" data-bind="value: chekDesc" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="chiefComplaint" class="col-xs-4 col-sm-2 col-md-2 col-lg-2">主诉</label>
+								<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+									<input type="text" class="form-control" disabled id="chiefComplaint" data-bind="value:chiefComplaint" />
+								</div>
+							</div>
+
+							<div class="form-group">
+
+								<label for="pastHistory" class="col-xs-4 col-sm-2 col-md-2 col-lg-2">既往史</label>
+								<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+									<input type="text" class="form-control" disabled id="pastHistory" data-bind="value: pastHistory" />
+								</div>
+
+							</div>
+
+							<div class="form-group">
+
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="height" class="control-label col-xs-4 col-sm-2 col-md-2 col-lg-2 height-babel">身高</label>
+									<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 height">
+										<input type="text" disabled class="form-control" id="height" data-bind="value:height"/>
+									</div>
+									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+										<label class="control-label">cm</label>
+									</div>
+								</div>
+
+								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="weight" class="control-label col-sm-4 col-sm-2 col-md-2 col-lg-2 weight-babel">体重</label>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 weight">
+										<input type="text" disabled class="form-control" id="weight" data-bind="value: weight"/>
+									</div>
+									<div class=" col-sm-2 col-md-2 col-lg-2">
+
+										<label class="control-label">kg</label>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 text-center">
+						<button type="button" class="btn btn-primary" data-bind="click:$root.sure">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:$root.close">取消</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!--模态框结束-->
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.datetimepicker.full.min.js"></script>
+<script src="js/knockout-3.4.2.js"></script>
+<!--视频插件-->
+<script src="js/video.js"></script>
+<!-- 滑动条js -->
+<script src="js/slide.js"></script>
+<script src="./layer/layer.js"></script>
+<script src="js/canvas2image.js"></script>
+<!--将元素变成canvas-->
+<script src="js/html2canvas.min.js"></script>
+<script src="js/imageLabel.js"></script>
+<script src="js/index.js"></script>
+
+</html>

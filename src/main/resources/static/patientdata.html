@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>列表</title>
+	</head>
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="layer/theme/default/layer.css" rel="stylesheet"/>
+	<link href="css/date-select.css" rel="stylesheet"/>
+	<body>
+		<style>
+			.patient-list{
+				background-color: #084e7b;
+				color: #FFFFFF;
+				font-size: 20px;
+			}
+			.date-select{
+				background-color: #00DD1C;
+				color: #FFFFFF;
+				font-size: 20px;
+			}
+		</style>
+		<div class="patient-list">
+			<span>病人列表</span>
+		</div>
+		<div>
+			<div class="calend">条件检索:</div>
+		 	<div id="calend" class="calend">选择日期</div>
+		 		<div class="calend-z">
+ 					<span>至</span>
+ 				</div>
+			<div id="calend1" class="calend">选择日期</div>
+		</div>
+		<button class="btn btn-primary" type="button" style="margin-top: 20px;">查询</button>
+		<table class="table table-striped data-patient">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>年龄</th>
+					<th>检查日期</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</body>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="layer/layer.js"></script>
+	<script src="js/date-select.js"></script>
+
+	<script>
+		$(function(){
+			$.ajax({
+				type:"post",
+				url:"getAllPatient",
+				async:false,
+				dataType:"json",
+				success:function (data) {console.log(data);
+					for (let i = 0; i<data.length; i++){
+						$(".data-patient").append("<tbody><tr><td class='id'>"+data[i].id+"</td><td class='name'><a href='index.html'>"+data[i].name+"</a></td><td class='sex'>"+data[i].sex+"</td><td class='age'>"+data[i].age+"</td><td class='date'>"+data[i].date+"</td><td class='stauts'>"+data[i].stauts+"</td></tr></tbody>")
+					}
+				}
+			})
+		})
+	</script>
+</html>

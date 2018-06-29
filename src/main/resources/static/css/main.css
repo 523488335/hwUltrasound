@@ -1,0 +1,465 @@
+/*==================夏麒麟  开始===================*/
+html {
+	/*因为引入了bootstrap库还有一些其他库，统一这个font-size*/ 
+	font-size: 10px !important;
+}
+body {
+	/*background: #000;*/
+}
+/*清除bootstrap内填充*/
+.clear-padding-left {
+	padding-left: 0;
+}
+.clear-padding-right {
+	padding-right: 0;
+}
+.padding-10 {
+	padding-left: 5px;
+}
+.padding-left-10 {
+	padding-right: 5px;
+}
+/*顶部背景条*/
+.top-bg {
+	/*height: 50px;
+	line-height: 50px;*/
+	height: 4rem;
+	line-height: 4rem;
+	color: #000;
+	font-size: 1.8rem;/*18px*/
+	background: #a0d8f4;
+}
+/*顶部的按钮列表*/
+.top-icon-list>i {
+	margin-right: 1rem;
+}
+/*左上角信息提示面板*/
+.tips-pane {
+	color: #000;
+	/*font-size: 1.6rem;*/
+	/*border-right: 2rem solid;
+	-webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#0E0E0E));
+	-webkit-border-image: -webkit-linear-gradient(#FFF, #0E0E0E);
+	-moz-border-image: -moz-linear-gradient(#FFF, #0E0E0E);
+	-o-border-image: -o-linear-gradient(#FFF, #0E0E0E);
+	border-image: linear-gradient(#FFF, #0E0E0E) 30 30;*/
+	border: 2px solid #FFF;
+
+}
+.whiteLine {
+	border: 2px solid #FFF;
+	border-left: none;
+}
+.tips-pane {
+	padding-top: 10px;
+}
+.tips-pane .tips-item label{
+	float: left;
+}
+.tips-pane .tips-item span{
+	float: right;
+}
+/*中间部分的背景色*/
+.middle-bg {
+	background: #cae8f9;
+	/*padding-top: 10px;*/
+}
+/*缩略图上面的标题*/
+.caption {
+	color: #000;
+}
+
+/*右侧缩略图*/
+.right-box {
+	height: 100%;
+	position: relative;
+	/*color: #000;*/
+	/*border: 2px solid #FFF;*/
+	font-size: 16px;
+}
+.right-title {
+	height: 36px;
+	line-height: 36px;
+}
+
+/*右侧缩略图主体内容*/
+.right-content {
+	width: 100%;
+}
+.right-content .img-content-left,.right-content .img-content-right {
+	width: 100%;
+	margin: 0 auto;
+}
+/*缩略图功能面板*/
+.right-content img {
+	width: 100%;
+	height: 50px;
+	padding: 0 5px;
+	margin-top: 5px;
+}
+.right-footer {
+	position: absolute;
+	bottom: 6px;
+	left: 15px;
+}
+.control-bg {
+	background: #dcf0fa;
+	border-bottom: 2px solid #FFF;
+}
+.panel-bg {
+	background: #dcf0fa;
+}
+
+.control-bg  .nav li {
+	width: 104px;
+	height: 40px;
+	border: 1px solid #1aa1e6;
+	border-radius: 16px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 20px;
+	text-align: center;
+	overflow: hidden;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	background: rgb(237,247,251);
+	border: none;
+	
+}
+.nav>li>a:focus, .nav>li>a:hover {
+	background: rgb(237,247,251);
+}
+
+
+/*重写按钮大小*/
+/*无论什么屏幕，按钮的公共样式*/
+.tab-pane .btn-list .btn {
+	
+	color: #000;
+	background: #FFF;
+	border-radius: 50% !important;
+}
+/*配合下面的媒体查询*/
+.btn-group-1>.btn:last-child,.btn-group-2>.btn:last-child {
+	margin-right: 0;
+}
+
+/*避免影响模态框中的样式*/
+.container-fluid .tab-content {
+	margin-top: 4px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: #dcf0fa;
+}
+/*解决btn-group-*没有高度的问题*/
+.tab-content .btn-list {
+	width: 100%;
+}
+/*模态框确认中的按钮被上面的样式干扰--重新写成bootstrap默认的样式*/
+.modal .btn {
+	border-radius: 6px !important;
+}
+.modal .btn-primary {
+	background: #337ab7;
+}
+
+/*切换按钮*/
+/*.shift-btn {
+	position: relative;
+	width: 65px;
+	height: 60px;
+	cursor: pointer;
+}
+.shift-btn .half-circle {
+	position: absolute;
+	background: #30445C;
+	width: 30px;
+	height: 60px;
+	
+}
+.activeBtn {
+	background: #337ab7 !important;
+}
+
+.shift-btn .left {
+	left: 0;
+	top: 0;
+	border-radius: 30px 0 0 30px;
+	
+}
+.shift-btn .right {
+	left: 35px;
+	top: 0;
+	border-radius: 0 30px 30px 0;
+}
+.shift-btn .middle {
+	position: absolute;
+	left: 18px;
+	top: 18px;
+	width: 26px;
+	height: 26px;
+	line-height: 30px;
+	color: #FFF;
+	background-color: #99AAC4;
+	border-radius: 50%;
+	box-shadow: 0 0 5px #376939,
+				0 0 10px #176698,
+				0 0 15px #355C84;
+	text-align: center;
+	z-index: 2;
+}
+*/
+/*底部功能按钮*/
+.circle {
+	width: 50px;
+	height: 50px;
+	border: 4px solid #1aa1e6;
+	margin-left: 2px;
+	border-radius: 50%;
+	background: #FFF;
+}
+.circle i {
+	margin-top: 6px;
+}
+
+/*.circle-sm {
+	width: 40px;
+	height: 40px;
+	border: 4px solid #00c7a0;
+	border-radius: 50%;
+}*/
+.circle-sm i {
+	margin-top: 5px;
+}
+
+/*针对三种屏幕进行按钮适配*/
+/*.tab-content .btn-group-sm {
+	width: 70px;
+	height: 70px;
+	font-size: 12px;
+	margin-right: 6px;
+	border-radius: 50% !important;
+}
+.tab-content .btn-group-md {
+	
+}
+.tab-content .btn-group-lg {
+	width: 80px;
+	height: 80px;
+	margin-right: 7%;
+	border-radius: 50% !important;
+}
+*/
+
+
+
+/*中间的圆圈*/
+.clear-bg {
+	background: transparent;
+}
+.circle-middle {
+	border: 4px solid #00c7a0;
+	border-radius: 50%;
+	background: #FFF;
+}
+.circle-middle i {
+	margin-top: 0.37em;
+}
+/*sm尺寸下 中间控制按钮的*/
+/*.circle-middle-sm {
+	width: 40px;
+	height: 40px;
+	border: 4px solid #00c7a0;
+	border-radius: 50%;
+	background: #FFF;
+}*/
+.circle-middle-sm i {
+	/*margin-top: 0.37em;*/
+}
+/*控制中间按钮的上边距*/
+.marginTop-20 {
+	margin-top: 20px;
+}
+
+/*中间图像部分*/
+.image-header-info {
+	margin-top: 10px;
+	font-size: 16px;
+}
+.image-header-info .info-1 {
+	margin-right: 40px;
+}
+/*实时图像*/
+.image-online {
+	overflow: hidden;
+}
+/*去掉周围边框*/
+.thumbnail {
+	border: none;
+	padding: 0;
+} 
+
+
+/*播放按钮，截屏按钮*/
+.play-all-video,.screenshot-all-video {
+    border-radius: 4px;
+}
+.play-all-video {
+	background-color: #337ab7;
+    border-color: #2e6da4;
+    color: #FFF;
+  	margin-left: -40px;
+}
+.screenshot-all-video {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+/*保证无论在什么屏幕下，都是100%的图像呈现*/
+.videoTag-left-dimensions,.videoTag-right-dimensions {
+	width: 100%;
+}
+
+/*解决row下面的col高度不一致问题--采用flex布局做*/
+/*参考链接：https://blog.csdn.net/jewely/article/details/53006123*/
+.row-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+.row-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+/*针对缩略图高度，做媒体查询*/
+
+/*pad -md*/
+@media screen and (min-width: 768px) and (max-width: 992px) {
+	.circle-middle {
+		width: 50px;
+		height: 50px;
+	}
+	.tab-content .col-sm-2 {
+		padding: 0;
+		margin-top: 8px;
+	}
+	.col-sm-2 .btn:first-child {
+		padding-left: 0;
+	}
+	.col-sm-2 .btn:last-child {
+		padding-right: 0;
+	}
+	.btn-group-1>.btn,.btn-group-2>.btn {
+		margin-right: 18px;
+	}
+	
+	.right-content {
+		height: 200px;
+		overflow-y: auto;
+	}
+	.right-footer i {
+		margin-right: 4px;
+		font-size: 20px;
+	}
+	/*控制模态框下的*/
+	.height-babel,.weight-babel {
+		padding: 0;
+		text-align: left !important;
+	}
+	.height {
+		padding-left: 52px;
+		
+	}
+}
+/*最大屏幕 pad pro*/
+@media screen and (min-width: 922px) and (max-width: 1200px) {
+	/*中间的切换按钮适配*/
+	.circle-middle {
+		width: 60px;
+		height: 60px;
+	}
+	.tab-content .col-md-2 {
+		padding: 0;
+	}
+	.tab-content .col-md-2 .btn:first-child {
+		padding-left: 0;
+	}
+	/*中间的切换按钮适配--结束*/
+	
+	/*左右两边按钮的适配*/
+	.btn-group-1>.btn,.btn-group-2>.btn {
+		margin-right: 54px;
+	}
+	
+	.btn-group-1>.btn:first-child,.btn-group-2>.btn:first-child {
+		margin-left: 20px;
+	}
+	
+	
+	/*.thumbnail>img{
+		max-height: 330px;
+	}*/
+	.right-content {
+		height: 260px;
+		overflow-y: auto;
+	}
+	.right-footer i {
+		margin-right: 10px;
+		font-size: 26px;
+	}
+	.height-babel,.weight-babel {
+		text-align: left !important;
+	}
+	.height {
+		padding-left: 78px;
+	}
+}
+/*我自己的屏幕*/
+@media screen and (min-width: 1201px)  {
+	.circle-middle {
+		width: 60px;
+		height: 60px;
+	}
+	.btn-group-1>.btn,.btn-group-2>.btn {
+		margin-right: 102px;
+	}
+	
+	.btn-group-1>.btn:first-child,.btn-group-2>.btn:first-child {
+		margin-left: 40px;
+	}
+	.thumbnail>img{
+		/*max-height: 320px;*/
+	}
+	.right-content {
+		/*max-height: 390px;*/
+		max-height: 460px;
+		overflow-y: auto;
+	}
+	.right-footer i {
+		margin-right: 20px;
+		font-size: 26px;
+	}
+	
+	/*解决B面板的问题*/
+	#B .btnB-style{
+		margin-right: 70px;
+		
+	}
+	#B .btnB-style:last-child {
+		margin-right: 0;
+	}
+	.height-babel,.weight-babel {
+		text-align: left !important;
+	}
+	.height {
+		padding-left: 78px;
+	}
+}
+/*图像部分结束*/
+
+
+
+/*==================夏麒麟 结束===================*/

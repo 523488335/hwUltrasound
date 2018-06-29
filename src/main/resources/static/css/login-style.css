@@ -1,0 +1,91 @@
+/** banner部分 **/
+
+.login-banner {
+	background: url(../img/banner.jpeg) no-repeat;
+	background-size: 100%;
+}
+
+.top-height {
+	height: 210px;
+	line-height: 210px;
+}
+
+.top-height h1 {
+	color: #FFF;
+	line-height: 170px;
+	letter-spacing: 20px;
+	font-family: FangSong;
+	font-size: 55px;
+}
+
+
+/** 登陆框 **/
+
+/*.input-style {
+	width: 350px;
+	
+	
+}
+
+.input-btn {
+	margin-top: 10px;
+}
+*/
+/*登录注册*/
+
+.form-center {
+	width: 400px;
+	/*height: 56px;*/
+	margin: 0 auto;
+	margin-top: 60px;
+}
+.form-center .username input,.form-center .password input{
+	height: 50px;
+	padding-left: 60px;
+}
+.form-center .pwd-top {
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+.form-center .checkbox {
+	padding-left: 0;
+}
+.form-center .forget-pass {
+	padding-left: 0;
+	text-align: center;
+}
+.form-center .register {
+	padding-right: 0;
+}
+.form-center .forget-pass a, .form-center .register a{
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+}
+.form-center .forget-pass a:hover, .form-center .register a:hover{
+	font-weight: 700;
+	color: rgb(33,56,98);
+}
+.sim-button {
+	margin-top: 0;
+}
+.btn-login {
+	width: 100%;
+	height: 56px;
+	line-height: 42px;
+	color: #FFF;
+	font-size: 30px;
+	font-family: "宋体";
+	
+	background: rgb(33,56,98);
+}
+.btn-login:hover {
+	color: #FFF;
+
+}
+/*控制图标*/
+.form-control-feedback {
+	line-height: 50px;
+	
+	left: 20px;
+} 

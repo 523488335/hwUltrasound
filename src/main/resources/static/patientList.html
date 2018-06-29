@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>瀚维智能乳腺筛查系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/jquery.datetimepicker.css" />
+	<link href="layer/theme/default/layer.css" rel="stylesheet" />
+	<link href="css/date-select.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="css/patientList.css" />
+</head>
+
+<body>
+<div class="container">
+	<!--<ol class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">2013</a>
+        </li>
+        <li class="active">十一月</li>
+    </ol>-->
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<span class="panel-left">查询条件</span>
+					<span class="panel-right"><a class="panel-right-a">注销</a></span>
+					<span class="panel-in"></span>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<div class="lead-panel">
+						<div class="filter-panel">
+							<div class="row">
+								<div class="col-sm-4 col-md-4 col-lg-4 form-group">
+									<label for="" class="control-label col-sm-5 col-md-5 col-lg-5">
+										姓名
+									</label>
+									<div class="col-sm-7 col-md-7 col-lg-7">
+										<input type="text" class="form-control" data-bind="value: name"/>
+									</div>
+								</div>
+								<div class="col-sm-4 col-md-4 col-lg-4 form-group">
+									<label for="" class="control-label col-sm-5 col-md-5 col-lg-5">
+										性别
+									</label>
+									<div class="col-sm-7 col-md-7 col-lg-7">
+										<select class="form-control" id="selectedSex" data-bind="options:sexList,optionsText:'sex',optionsValue:'sexCode',value:selectedSex">
+											<!--<option value="0">全部</option>
+                                            <option value="1">男</option>
+                                            <option value="1">女</option>-->
+
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-4 col-md-4 col-lg-4 form-group">
+
+									<label for="" class="control-label col-sm-5 col-md-5 col-lg-5">
+										ID
+									</label>
+
+									<div class="col-sm-7 col-md-7 col-lg-7">
+										<input type="text" class="form-control" data-bind="value:doctor"/>
+									</div>
+								</div>
+
+							</div>
+							<!--<div class="row">-->
+								<!--&lt;!&ndash;<div class="col-sm-4 col-md-4 col-lg-4 form-group">&ndash;&gt;-->
+								<!--&lt;!&ndash;<label for="" class="control-label col-sm-5 col-md-5 col-lg-5">&ndash;&gt;-->
+								<!--&lt;!&ndash;关键字&ndash;&gt;-->
+								<!--&lt;!&ndash;</label>&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="col-sm-7 col-md-7 col-lg-7">&ndash;&gt;-->
+								<!--&lt;!&ndash;&lt;!&ndash;<input type="text" class="form-control" />&ndash;&gt;&ndash;&gt;-->
+								<!--&lt;!&ndash;<select class="form-control" id="keywodsList" data-bind="options:keywordsList,optionsText:'name',value:keywords">&ndash;&gt;-->
+								<!--&lt;!&ndash;&lt;!&ndash;<option value="0">全部</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="1">检查提示</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="2">检查所见</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="3">患者标记</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="4">临床诊断</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="5">临床科室</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="6">临床医生</option>&ndash;&gt;-->
+								<!--&lt;!&ndash;<option value="7">住院号</option>&ndash;&gt;&ndash;&gt;-->
+
+								<!--&lt;!&ndash;</select>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--<div class="col-sm-6 col-md-6 col-lg-6 form-group">-->
+									<!--<label for="" class="control-label col-sm-5 col-md-5 col-lg-5">-->
+										<!--开始时间-->
+									<!--</label>-->
+									<!--<div class="col-sm-7 col-md-7 col-lg-7">-->
+										<!--<div class="input-group date" id="startTime">-->
+											<!--<input type="text" class="form-control" data-bind="value:startTime">-->
+													<!--<span class="input-group-addon" style="cursor: pointer">-->
+                        								<!--<i class="fa fa-calendar"></i>-->
+                    								<!--</span>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="col-sm-6 col-md-6 col-lg-6ƒ form-group">-->
+									<!--<label for="" class="control-label col-sm-5 col-md-5 col-lg-5">-->
+										<!--结束时间-->
+									<!--</label>-->
+									<!--<div class="col-sm-7 col-md-7 col-lg-7">-->
+										<!--<div class="input-group date" id="endTime">-->
+											<!--<input type="text" class="form-control" data-bind="value:endTime">-->
+													<!--<span class="input-group-addon" style="cursor: pointer">-->
+                        						<!--<i class="fa fa-calendar"></i>-->
+                    						<!--</span>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="pull-right search-btn">
+										<button class="btn btn-primary bt-search" data-bind="click:search"><i class="fa fa-search"></i>&nbsp;查询</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<div class="panel">
+				<div class="panel-heading">
+					患者信息列表
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive" style="overflow-x: auto;">
+						<table class="table table-striped table-condensed table-bordered table-hover" style="min-width: 1000px;">
+							<thead>
+							<tr>
+								<th style="width: 100px;">患者ID</th>
+								<th style="width: 60px;">姓名</th>
+								<th style="width: 60px;">性别</th>
+								<th style="width: 60px;">出生年月</th>
+								<!--<th>检查日期</th>-->
+								<!--<th>检查医生</th>-->
+								<!--<th>检查部位</th>-->
+								<!--<th>检查状态</th>-->
+								<!--<th>登记时间</th>-->
+								<!--<th>登记医生</th>-->
+								<!--<th>检查科室</th>-->
+								<!--<th>检查设备</th>-->
+								<!--<th>记录医生</th>-->
+								<!--<th>打印医生</th>-->
+								<!--<th>费用</th>-->
+								<!--<th>预约时间</th>-->
+								<!--<th>打印时间</th>-->
+								<!--<th>检查费用</th>-->
+								<!--<th>检查所见</th>-->
+								<!--<th>检查提示</th>-->
+								<!--<th>临床诊断</th>-->
+								<!--<th>患者来源</th>-->
+								<!--<th>检查类型</th>-->
+								<th style="width: 60px;">联系电话</th>
+								<th style="width: 638px;">联系地址</th>
+								<!--<th>操作</th>-->
+							</tr>
+							</thead>
+							<tbody class="palist"></tbody>
+						</table>
+					</div>
+
+					<!-- <!--<div class="page-wrapper clearfix">-->
+					<div class="data-info pull-left">
+					<span>显示</span>
+					<span>1</span>
+					<span>至</span>
+					<span>5</span>
+					<span>共</span>
+					<span>5</span>
+					<span>条数据</span>
+					</div>
+					<div class="pagination-info pull-right">
+					<ul class="pagination pagination-sm">
+					<li class="" class="disabled">
+					<!-- 做多语言啊 绑定  data-bind="click:first" -->
+					<a href="#" data-bind="click:first">首页</a>
+					</li>
+					<li class="" class="disabled">
+					<!-- data-bind="click: previous" -->
+					<a href="#" data-bind="click: previous">上一页</a>
+					</li>
+					</ul>
+					<ul class="pagination pagination-sm">
+					<!-- <li data-bind="css: { active: $data.pageNumber === ($root.pageIndex()) }" class="active">
+                        <a href="#" data-bind="text: $data.pageNumber, click: function() { $root.gotoPage($data.pageNumber); }">1</a>
+                    </li> -->
+					<li class="active">
+					<a href="#" data-bind="text:currPageNum">1</a>
+					</li>
+					</ul>
+					<ul class="pagination pagination-sm">
+					<li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0}" class="disabled">
+                        <a href="#" data-i18n="sys:pagination.end" data-bind="click: last">尾页</a>
+                    </li>
+                    <li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0 }" class="disabled">
+                        <a href="#" data-i18n="sys:pagination.next" data-bind="click: next" class="next">下一页</a>
+                    </li>
+					<li  class="disabled">
+					<a href="#"  data-bind="click: last">尾页</a>
+					</li>
+					<li  class="disabled">
+					<a href="#"  data-bind="click: next">下一页</a>
+					</li>
+					
+					</ul>
+					</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+<div class="container">
+	<div class="row patient-history">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<div class="panel">
+				<div class="panel-heading">
+					患者历史记录
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive" style="overflow-x: auto;">
+						<table class="table table-striped  table-bordered table-hover" style="min-width: 1000px;">
+							<thead>
+							<tr>
+								<th>次数</th>
+								<th>描述</th>
+								<th>主要</th>
+								<th>历史</th>
+								<th>时间</th>
+								<th>来源</th>
+								<th>类型</th>
+								<th>状态</th>
+							</tr>
+							</thead>
+							<tbody class="history"></tbody>
+						</table>
+					</div>
+
+					<!--<div class="page-wrapper clearfix">-->
+					<!--<div class="data-info pull-left">-->
+					<!--<span>显示</span>-->
+					<!--<span>1</span>-->
+					<!--<span>至</span>-->
+					<!--<span>5</span>-->
+					<!--<span>共</span>-->
+					<!--<span>5</span>-->
+					<!--<span>条数据</span>-->
+					<!--</div>-->
+					<!--<div class="pagination-info pull-right">-->
+					<!--<ul class="pagination pagination-sm">-->
+					<!--<li class="" class="disabled">-->
+					<!--&lt;!&ndash;做多语言啊 绑定  data-bind="click:first"&ndash;&gt;-->
+					<!--<a href="#">首页</a>-->
+					<!--</li>-->
+					<!--<li class="" class="disabled">-->
+					<!--&lt;!&ndash;data-bind="click: previous"&ndash;&gt;-->
+					<!--<a href="#">上一页</a>-->
+					<!--</li>-->
+					<!--</ul>-->
+					<!--<ul class="pagination pagination-sm">-->
+					<!--&lt;!&ndash;<li data-bind="css: { active: $data.pageNumber === ($root.pageIndex()) }" class="active">-->
+					<!--<a href="#" data-bind="text: $data.pageNumber, click: function() { $root.gotoPage($data.pageNumber); }">1</a>-->
+					<!--</li>&ndash;&gt;-->
+					<!--<li class="active">-->
+					<!--<a href="#">1</a>-->
+					<!--</li>-->
+					<!--</ul>-->
+					<!--<ul class="pagination pagination-sm">-->
+					<!--&lt;!&ndash;<li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0}" class="disabled">-->
+					<!--<a href="#" data-i18n="sys:pagination.end" data-bind="click: last">尾页</a>-->
+					<!--</li>-->
+					<!--<li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0 }" class="disabled">-->
+					<!--<a href="#" data-i18n="sys:pagination.next" data-bind="click: next">下一页</a>-->
+					<!--</li>&ndash;&gt;-->
+					<!--<li  class="disabled">-->
+					<!--<a href="#"  data-bind="click: last">尾页</a>-->
+					<!--</li>-->
+					<!--<li  class="disabled">-->
+					<!--<a href="#"  data-bind="click: next">下一页</a>-->
+					<!--</li>-->
+					<!---->
+					<!--</ul>-->
+					<!--</div>-->
+					<!--</div>-->
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.datetimepicker.full.min.js"></script>
+<script src="js/knockout-3.4.2.js"></script>
+<script src="js/patientList.js"></script>
+<script src="./layer/layer.js"></script>
+
+</html>
