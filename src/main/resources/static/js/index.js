@@ -214,6 +214,9 @@ function ViewModel() {
 	self.sex = ko.observable();
 	self.age = ko.observable();
 	self.birthday = ko.observable();
+	self.source = ko.observable();
+	self.type = ko.observable();
+
 	
 	// 该方法应该再没有用到---别删除
 	self.save = function() {
