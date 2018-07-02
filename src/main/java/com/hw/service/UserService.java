@@ -23,7 +23,7 @@ public class UserService {
 		if(username == null || password == null){
 			throw new HwException(ErrorCode.非法参数, "用户名和密码不能为null");
 		}
-		list = userMapper.findByUsername(username);
+		list = findByUsername(username);
 		if (list == null || list.size() == 0) {
 			throw new HwException(ErrorCode.流程出错, "账户不存在");
 		}
@@ -35,9 +35,15 @@ public class UserService {
         return list;
 	}
 	
+	public List<User> findByUsername(String username){
+		return userMapper.findByUsername(username);
+	}
+	
 	public void LogOut(HttpSession session){
     	session.invalidate();
     }
+	
+	
 	
 	public User getUserById(Integer id){
         return userMapper.findById(id).get(0);

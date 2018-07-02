@@ -1,6 +1,7 @@
 package com.hw.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "user", catalog = "hw_ultrasonic_data_jpa")
@@ -28,33 +31,29 @@ public class User implements Serializable{
 
 	@Column
     private String password;
-
+	
 	@Column
-    private String birthday;
-
+    private String idNumber;
+	
 	@Column
-    private String recentlyLanded;
-
-	@Column
-    private String recentlyLocation;
-
+    private String identity;
+	
 	@Column
     private String endLanded;
 
 	@Column
     private String endLocation;
-
+	
 	@Column
     private Integer count;
+	
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
+	@Column
+    private String isLicense;
+	
     public int getId() {
 		return id;
 	}
@@ -87,43 +86,60 @@ public class User implements Serializable{
         this.password = password == null ? null : password.trim();
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
+	public String getIdentity() {
+		return identity;
+	}
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday == null ? null : birthday.trim();
-    }
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
 
-    public String getRecentlyLanded() {
-        return recentlyLanded;
-    }
+	public String getIdNumber() {
+		return idNumber;
+	}
 
-    public void setRecentlyLanded(String recentlyLanded) {
-        this.recentlyLanded = recentlyLanded == null ? null : recentlyLanded.trim();
-    }
+	public void setIdNumber(String idNumber) {
+		this.idNumber = idNumber;
+	}
 
-    public String getRecentlyLocation() {
-        return recentlyLocation;
-    }
+	public String getIsLicense() {
+		return isLicense;
+	}
 
-    public void setRecentlyLocation(String recentlyLocation) {
-        this.recentlyLocation = recentlyLocation == null ? null : recentlyLocation.trim();
-    }
+	public void setIsLicense(String isLicense) {
+		this.isLicense = isLicense;
+	}
 
-    public String getEndLanded() {
-        return endLanded;
-    }
+	public Date getDate() {
+		return date;
+	}
 
-    public void setEndLanded(String endLanded) {
-        this.endLanded = endLanded == null ? null : endLanded.trim();
-    }
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-    public String getEndLocation() {
-        return endLocation;
-    }
+	public String getEndLanded() {
+		return endLanded;
+	}
 
-    public void setEndLocation(String endLocation) {
-        this.endLocation = endLocation == null ? null : endLocation.trim();
-    }
+	public void setEndLanded(String endLanded) {
+		this.endLanded = endLanded;
+	}
+
+	public String getEndLocation() {
+		return endLocation;
+	}
+
+	public void setEndLocation(String endLocation) {
+		this.endLocation = endLocation;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	
 }
