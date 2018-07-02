@@ -21,7 +21,7 @@ public class User implements Serializable{
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int userId;
 
 	@Column
     private String name;
@@ -54,12 +54,12 @@ public class User implements Serializable{
 	@Column
     private String isLicense;
 	
-    public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {

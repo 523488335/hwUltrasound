@@ -43,10 +43,8 @@ public class UserService {
     	session.invalidate();
     }
 	
-	
-	
 	public User getUserById(Integer id){
-        return userMapper.findById(id).get(0);
+        return userMapper.findByUserId(id).get(0);
     }
 	
 	public List<User> getAllUser(){

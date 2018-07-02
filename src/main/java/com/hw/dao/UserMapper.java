@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper extends JpaRepository<User, Long>{
 	
 	@Query
-	List<User> findById(int id);
+	List<User> findByUserId(int userId);
 	
 	@Query
 	List<User> findByUsername(String username);
