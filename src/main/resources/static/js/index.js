@@ -206,7 +206,7 @@ function ViewModel() {
 	self.chiefComplaint = ko.observable(); // 主诉
 	self.pastHistory = ko.observable(); // 既往史
 	self.height = ko.observable(); // 身高
-	self.weight = ko.observable(); // 体重
+	self.weight = ko.observable(); // 体重奶
 	self.isEnable = ko.observable(false);
 	self.age = ko.observable();
 	self.name = ko.observable();
