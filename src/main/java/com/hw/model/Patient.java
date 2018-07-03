@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "patient", catalog = "hw_ultrasonic_data_jpa")
-public class Patient  implements Serializable{
+public class Patient implements Serializable{
 	
 	private static final long serialVersionUID = 1123750727604688584L;
 

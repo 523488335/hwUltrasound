@@ -37,8 +37,8 @@ public class UserController {
      * */
     @RequestMapping("getUserById")
     public User getUserById(User user){
-        System.out.println("------------查询Id="+user.getId()+"的用户------------");
-        return userService.getUserById(user.getId());
+        System.out.println("------------查询Id="+user.getUserId()+"的用户------------");
+        return userService.getUserById(user.getUserId());
     }
 
 
