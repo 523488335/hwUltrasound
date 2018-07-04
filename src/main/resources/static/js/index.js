@@ -645,7 +645,7 @@ function showImage(id,position,src) {
     var image = new Image();
     
     image.setAttribute("crossOrigin",'Anonymous')
-    image.src = src;
+    image.src = '/file/downloads?path=' + src;
   
     /**
      * imgSource 图片源

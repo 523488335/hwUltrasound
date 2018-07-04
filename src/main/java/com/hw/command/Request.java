@@ -2,6 +2,10 @@ package com.hw.command;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * 上位机向下位机发出请求，id是唯一标识，mode表示指令。
+ * @author 陈尚均
+ */
 public class Request {
 
 	private Long id;
