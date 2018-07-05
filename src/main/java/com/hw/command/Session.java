@@ -21,7 +21,7 @@ import com.hw.exception.HwException;
 public class Session {
 	
 	private static final String ENCODE = "utf-8";
-
+	private ServerSocket server = null;
 	private Socket socket = null;
 	private InputStream in = null;
 	private OutputStream out = null;
@@ -41,9 +41,8 @@ public class Session {
 	 * @param port
 	 * @throws IOException
 	 */
-	@SuppressWarnings("resource")
 	public void accept(int port) throws IOException{
-		ServerSocket server = new ServerSocket(port);
+		server = new ServerSocket(port);
 		new Thread(new Runnable() {
 			
 			@Override
@@ -64,11 +63,24 @@ public class Session {
 		}).start();
 	}
 	/**
+	 * 关闭soket连接
+	 * @return
+	 * @throws IOException
+	 */
+	public boolean close() throws IOException {
+		writer.close();
+		out.close();
+		in.close();
+		socket.close();
+		server.close();
+		return true;
+	}
+	/**
 	 * 接收消息线程，负责接收下位机消息，处理过后交给消息调度器Manager
 	 * @author 陈尚均
 	 *
 	 */
-	private class recvThread extends Thread{
+	private class recvThread extends Thread {
 		
 		@Override
 		public void run() {

@@ -28,6 +28,10 @@ public class SocketService {
 		conection.accept(port);
 	}
 	
+	public boolean stop() throws IOException{
+		return conection.close();
+	}
+	
 	public void sendMessage(String mode) throws HwException{
 		Long id = new Date().getTime();
 		conection.sendMessage(new Request(id, mode), new CallBack() {

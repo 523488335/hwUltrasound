@@ -8,7 +8,6 @@ import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +42,7 @@ public class FileController {
             OutputStream os = null; //输出流
             try {
                 os = response.getOutputStream();
-                fis = new FileInputStream(file); 
+                fis = new FileInputStream(file);
                 bis = new BufferedInputStream(fis);
                 int i = bis.read(buffer);
                 while(i != -1){
