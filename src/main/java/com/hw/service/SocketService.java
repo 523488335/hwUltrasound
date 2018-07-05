@@ -5,7 +5,6 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.hw.command.CallBack;
 import com.hw.command.Session;
@@ -24,14 +23,9 @@ public class SocketService {
 	@Autowired
 	private MessageMapper messageMapper;
 	
-	static{
-		try {
-			conection = new Session(Manager.getInstance());
-			conection.accept(80);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void start(int port) throws IOException{
+		conection = new Session(Manager.getInstance());
+		conection.accept(port);
 	}
 	
 	public void sendMessage(String mode) throws HwException{

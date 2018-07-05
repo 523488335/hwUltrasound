@@ -17,6 +17,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.hw.dao.ImageMapper;
+import com.hw.exception.ErrorCode;
+import com.hw.exception.HwException;
 import com.hw.model.Image;
 import com.hw.tools.FileUtils;
 
@@ -35,6 +37,7 @@ public class ImageService {
 		String filename = new Date().getTime() + ".png";
 		File path = new File(fileUploadPath + "originalImage");
 		if (!path.exists()) {
+			System.out.println("create dir " + path.getAbsolutePath());
 			path.mkdirs();
 		}
 		path = new File(path, filename);
@@ -48,6 +51,7 @@ public class ImageService {
 		String filename = new Date().getTime() + ".png";
 		File path = new File(fileUploadPath + "processedImage");
 		if (!path.exists()) {
+			System.out.println("create dir " + path.getAbsolutePath());
 			path.mkdirs();
 		}
 		path = new File(path, filename);
@@ -94,8 +98,15 @@ public class ImageService {
 	
 	/**
 	 * 删除图片byID
+	 * @throws HwException 
 	 */
-	public void deleteImageById(Long id){
+	public void deleteImageById(Long id) throws HwException{
+		List<Image> list = imageMapper.findByImageId(id);
+		if (list == null || list.size() == 0) {
+			throw new HwException(ErrorCode.非法参数, "没有对应id的图片");
+		}
+		File image = new File(list.get(0).getPath());
+		image.delete();
 		imageMapper.deleteById(id);
 	}
 }

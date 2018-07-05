@@ -35,7 +35,7 @@ public class FileUtils {
         }
         try {
             if (!file.exists()) {
-            	System.out.println(file.getAbsolutePath());
+            	System.out.println(file.getAbsolutePath()); 
             	file.createNewFile();
             }
             OutputStream imageStream = new FileOutputStream(file);

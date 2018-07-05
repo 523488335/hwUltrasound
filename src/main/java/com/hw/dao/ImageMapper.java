@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 public interface ImageMapper extends JpaRepository<Image, Long>,JpaSpecificationExecutor<Image>{
 	
 	@Query
+	List<Image> findByImageId(Long imageId);
+	@Query
 	List<Image> findByPatientDataId(Integer patientDataId);
 	@Query
 	List<Image> findByType(short type);

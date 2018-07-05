@@ -139,9 +139,10 @@ public class PatientMapperController {
      *      url：deleteImageById
      *      参数：int imageId
      *      返回：根据检查时间，返回一个患者的所有信息（填充信息模态框）
+     * @throws HwException 
      */
     @RequestMapping("deleteImageById")
-    public Object deleteImageById(Image image){
+    public Object deleteImageById(Image image) throws HwException{
         System.out.println("------------删除id："+image.getImageId()+"的图片------------------------");
         imageService.deleteImageById(image.getImageId());
         return "true";
