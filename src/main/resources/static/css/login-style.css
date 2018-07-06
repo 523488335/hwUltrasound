@@ -1,7 +1,7 @@
 /** banner部分 **/
 
 .login-banner {
-	background: url(../img/banner.jpeg) no-repeat;
+	background: url(../img/banner.jpg) no-repeat;
 	background-size: 100%;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .top-height h1 {
-	color: #FFF;
+	color: #000;
 	line-height: 170px;
 	letter-spacing: 20px;
 	font-family: FangSong;
@@ -23,8 +23,8 @@
 
 /*.input-style {
 	width: 350px;
-	
-	
+
+
 }
 
 .input-btn {
@@ -73,19 +73,18 @@
 	width: 100%;
 	height: 56px;
 	line-height: 42px;
-	color: #FFF;
+	color: #000;
 	font-size: 30px;
 	font-family: "宋体";
-	
-	background: rgb(33,56,98);
+	background: #CAE8F9;
 }
-.btn-login:hover {
-	color: #FFF;
+/*.btn-login:hover {
+	color: #000;
 
-}
+}*/
 /*控制图标*/
 .form-control-feedback {
 	line-height: 50px;
-	
+
 	left: 20px;
 } 

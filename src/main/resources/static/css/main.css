@@ -1,6 +1,6 @@
 /*==================夏麒麟  开始===================*/
 html {
-	/*因为引入了bootstrap库还有一些其他库，统一这个font-size*/ 
+	/*因为引入了bootstrap库还有一些其他库，统一这个font-size*/
 	font-size: 10px !important;
 }
 body {
@@ -27,7 +27,7 @@ body {
 	line-height: 4rem;
 	color: #000;
 	font-size: 1.8rem;/*18px*/
-	background: #a0d8f4;
+	background: #a0d9f5;
 }
 /*顶部的按钮列表*/
 .top-icon-list>i {
@@ -103,11 +103,11 @@ body {
 	left: 15px;
 }
 .control-bg {
-	background: #dcf0fa;
+	background: #cae8f9;
 	border-bottom: 2px solid #FFF;
 }
 .panel-bg {
-	background: #dcf0fa;
+	background: #a0d9f5;
 }
 
 .control-bg  .nav li {
@@ -124,7 +124,7 @@ body {
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
 	background: rgb(237,247,251);
 	border: none;
-	
+
 }
 .nav>li>a:focus, .nav>li>a:hover {
 	background: rgb(237,247,251);
@@ -134,9 +134,9 @@ body {
 /*重写按钮大小*/
 /*无论什么屏幕，按钮的公共样式*/
 .tab-pane .btn-list .btn {
-	
+
 	color: #000;
-	background: #FFF;
+	background: #edfafc;
 	border-radius: 50% !important;
 }
 /*配合下面的媒体查询*/
@@ -149,7 +149,7 @@ body {
 	margin-top: 4px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	background: #dcf0fa;
+	background: #a0d9f5;
 }
 /*解决btn-group-*没有高度的问题*/
 .tab-content .btn-list {
@@ -175,7 +175,7 @@ body {
 	background: #30445C;
 	width: 30px;
 	height: 60px;
-	
+
 }
 .activeBtn {
 	background: #337ab7 !important;
@@ -185,7 +185,7 @@ body {
 	left: 0;
 	top: 0;
 	border-radius: 30px 0 0 30px;
-	
+
 }
 .shift-btn .right {
 	left: 35px;
@@ -216,7 +216,7 @@ body {
 	border: 4px solid #1aa1e6;
 	margin-left: 2px;
 	border-radius: 50%;
-	background: #FFF;
+	background: #edfafc;
 }
 .circle i {
 	margin-top: 6px;
@@ -297,23 +297,23 @@ body {
 .thumbnail {
 	border: none;
 	padding: 0;
-} 
+}
 
 
 /*播放按钮，截屏按钮*/
 .play-all-video,.screenshot-all-video {
-    border-radius: 4px;
+	border-radius: 4px;
 }
 .play-all-video {
 	background-color: #337ab7;
-    border-color: #2e6da4;
-    color: #FFF;
-  	margin-left: -40px;
+	border-color: #2e6da4;
+	color: #FFF;
+	margin-left: -40px;
 }
 .screenshot-all-video {
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
 }
 /*保证无论在什么屏幕下，都是100%的图像呈现*/
 .videoTag-left-dimensions,.videoTag-right-dimensions {
@@ -323,15 +323,15 @@ body {
 /*解决row下面的col高度不一致问题--采用flex布局做*/
 /*参考链接：https://blog.csdn.net/jewely/article/details/53006123*/
 .row-flex {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
 }
 .row-flex > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 /*针对缩略图高度，做媒体查询*/
@@ -355,7 +355,7 @@ body {
 	.btn-group-1>.btn,.btn-group-2>.btn {
 		margin-right: 18px;
 	}
-	
+
 	.right-content {
 		height: 200px;
 		overflow-y: auto;
@@ -371,7 +371,7 @@ body {
 	}
 	.height {
 		padding-left: 52px;
-		
+
 	}
 }
 /*最大屏幕 pad pro*/
@@ -388,17 +388,17 @@ body {
 		padding-left: 0;
 	}
 	/*中间的切换按钮适配--结束*/
-	
+
 	/*左右两边按钮的适配*/
 	.btn-group-1>.btn,.btn-group-2>.btn {
 		margin-right: 54px;
 	}
-	
+
 	.btn-group-1>.btn:first-child,.btn-group-2>.btn:first-child {
 		margin-left: 20px;
 	}
-	
-	
+
+
 	/*.thumbnail>img{
 		max-height: 330px;
 	}*/
@@ -426,7 +426,7 @@ body {
 	.btn-group-1>.btn,.btn-group-2>.btn {
 		margin-right: 102px;
 	}
-	
+
 	.btn-group-1>.btn:first-child,.btn-group-2>.btn:first-child {
 		margin-left: 40px;
 	}
@@ -442,11 +442,11 @@ body {
 		margin-right: 20px;
 		font-size: 26px;
 	}
-	
+
 	/*解决B面板的问题*/
 	#B .btnB-style{
 		margin-right: 70px;
-		
+
 	}
 	#B .btnB-style:last-child {
 		margin-right: 0;
