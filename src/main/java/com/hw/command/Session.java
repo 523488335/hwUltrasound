@@ -89,6 +89,7 @@ public class Session {
 				while(true){
 					if (reader.ready()) {
 						buffer.append(reader.readLine());
+						System.out.println(buffer);
 						while(true){
 							int index1,index2;
 							index1 = buffer.indexOf("{");
@@ -97,7 +98,6 @@ public class Session {
 								String json = buffer.substring(index1, index2 + 1);
 								System.out.println(json);
 								buffer.delete(0, index2 + 1);
-								System.out.println(buffer.length());
 								try {
 									manager.dispatcher(Response.paseResponse(json));
 								} catch (Exception e) {
