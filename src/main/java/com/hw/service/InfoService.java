@@ -37,10 +37,6 @@ public class InfoService {
 		}
 		FileInputStream in = new FileInputStream(logPath);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-//		String line = reader.readLine();
-//		while(line != null){
-//			strs = line.split(regex)
-//		}
 		return null;
 	}
 	
@@ -48,6 +44,7 @@ public class InfoService {
 		List<Point> list = new ArrayList<>();
 		try{
 			File file = new File(path);
+			System.out.println(path);
 			if (!file.exists()) {
 				throw new HwException(ErrorCode.非法参数, "文件不存在");
 			}
@@ -58,7 +55,10 @@ public class InfoService {
 				String[] strs = line.split(" ");
 				Point point = new Point(strs[0],strs[1],strs[2]);
 				list.add(point);
+				line = reader.readLine();
 			}
+			in.close();
+			reader.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
