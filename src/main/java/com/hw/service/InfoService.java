@@ -52,7 +52,7 @@ public class InfoService {
 				throw new HwException(ErrorCode.非法参数, "文件不存在");
 			}
 			InputStream in = new FileInputStream(file);
-			LineNumberReader reader = new LineNumberReader(new InputStreamReader(in, "ANSI"));
+			LineNumberReader reader = new LineNumberReader(new InputStreamReader(in));
 			String line = reader.readLine();
 			while(line != null){
 				String[] strs = line.split(" ");
