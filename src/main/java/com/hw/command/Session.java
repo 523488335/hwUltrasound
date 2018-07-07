@@ -96,7 +96,6 @@ public class Session {
 							index2 = buffer.lastIndexOf("}");
 							if (index1 != -1 && index2 > index1) {
 								String json = buffer.substring(index1, index2 + 1);
-								System.out.println(json);
 								buffer.delete(0, index2 + 1);
 								try {
 									manager.dispatcher(Response.paseResponse(json));
