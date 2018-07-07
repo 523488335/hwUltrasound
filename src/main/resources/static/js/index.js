@@ -196,6 +196,9 @@ $(function() {
 	/*填充数据进模态框*/
 });
 
+//加载3D图像
+
+
 // 双向数据绑定
 function ViewModel() {
 	const self = this;

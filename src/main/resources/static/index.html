@@ -347,6 +347,7 @@
 				<span class="bars_10">10</span>
 			</div>
 		</div>
+	</ul>
 </div>
 <div class="container-fluid panel-bg">
 	<div class="tab-content">
@@ -356,7 +357,9 @@
 				<div class="col-sm-5 col-md-5 col-lg-5">
 					<div class="btn-group btn-group-1 btn-list " role="group">
 						<button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#info">
-							<div class="circle"><i class="fa fa-user-circle fa-2x"></i></div>
+							<div class="circle">
+								<i class="fa fa-user-circle fa-2x"></i>
+							</div>
 							<span class="title">信息</span>
 						</button>
 						<button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#nameplate">
@@ -365,7 +368,12 @@
                             </div>
                             <span>报告</span>
                         </button>
-
+						<button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#3dmodel">
+							<div class="circle">
+								<i class="fa fa-file-text fa-2x"></i>
+							</div>
+							<span>模型</span>
+						</button>
 					</div>
 
 				</div>
@@ -401,11 +409,10 @@
 		</div>
 	</div>
 </div>
-</div>
 <!--按钮控制面板 结束-->
 
 
-<!--模态框-->
+<!--模态框（信息）-->
 <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -644,6 +651,32 @@
 </div>
 <!-- 模态框结束 -->
 
+<!--模态框（模型）-->
+<div class="modal fade in" id="3dmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">3D模型</h4>
+			</div>
+			<div class="modal-body">
+				<div onload="draw();"></div>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 text-center">
+						<button type="button" class="btn btn-primary" data-bind="click:$root.sure">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:$root.close">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal -->
+</div>
+<!-- 模态框结束 -->
+
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -659,5 +692,9 @@
 <script src="js/html2canvas.min.js"></script>
 <script src="js/imageLabel.js"></script>
 <script src="js/index.js"></script>
+<!--3d模型three.js-->
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/3dmodel.js"></script>
 
 </html>
