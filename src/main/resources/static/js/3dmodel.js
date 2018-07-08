@@ -21,7 +21,7 @@ function initCamera() {
 
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
 
-    camera.position.set(0, 0, 200);
+    camera.position.set(0, 0, 1000);
 
 }
 
@@ -53,9 +53,9 @@ function initModel() {
 
     //轴辅助 （每一个轴的长度）
 
-    var object = new THREE.AxesHelper(500);
+    // var object = new THREE.AxesHelper(500);
 
-    scene.add(object);
+    // scene.add(object);
 
     //创建THREE.PointCloud粒子的容器
 
