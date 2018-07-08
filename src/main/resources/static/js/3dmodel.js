@@ -1,28 +1,21 @@
-/**
- * Created by meifan on 2018/7/7.
- */
-
 var renderer;
-
 
 
 function initRender() {
 
-    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer = new THREE.WebGLRenderer({
+        antialias: true
+    });
 
     //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    document.body.appendChild(renderer.domElement);
+    $(".model3d").append(renderer.domElement);
 
 }
 
-
-
 var camera;
-
-
 
 function initCamera() {
 
@@ -32,11 +25,7 @@ function initCamera() {
 
 }
 
-
-
 var scene;
-
-
 
 function initScene() {
 
@@ -44,17 +33,11 @@ function initScene() {
 
 }
 
-
-
 var light;
-
-
 
 function initLight() {
 
     scene.add(new THREE.AmbientLight(0x404040));
-
-
 
     light = new THREE.DirectionalLight(0xffffff);
 
@@ -64,11 +47,9 @@ function initLight() {
 
 }
 
-
+var cloud;
 
 function initModel() {
-
-
 
     //轴辅助 （每一个轴的长度）
 
@@ -76,55 +57,47 @@ function initModel() {
 
     scene.add(object);
 
-
-
     //创建THREE.PointCloud粒子的容器
 
     var geometry = new THREE.Geometry();
 
     //创建THREE.PointCloud纹理
 
-    var material = new THREE.PointCloudMaterial({size:5, vertexColors:true, color:0xffffff});
-
-
+    var material = new THREE.PointCloudMaterial({
+        size: 4,
+        vertexColors: true,
+        color: 0xffffff
+    });
 
     //循环将粒子的颜色和位置添加到网格当中
 
-    for (var x = -5; x <= 5; x++) {
+    for(var x = -5; x <= 5; x++) {
 
-        for (var y = -5; y <= 5; y++) {
+        for(var y = -5; y <= 5; y++) {
 
             var particle = new THREE.Vector3(x * 10, y * 10, 0);
 
             geometry.vertices.push(particle);
 
-            //geometry.colors.push(new THREE.Color(+randomColor()));
-            //设置粒子颜色
-            geometry.colors.push(new THREE.Color(0xffffff));
+            geometry.colors.push(new THREE.Color(+randomColor()));
 
         }
 
     }
 
-
-
     //实例化THREE.PointCloud
 
-    var cloud = new THREE.PointCloud(geometry, material);
+    cloud = new THREE.PointCloud(geometry, material);
 
     scene.add(cloud);
 
-
-
 }
-
-
 
 //随机生成颜色
 
 function randomColor() {
 
-    var arrHex = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d","e","f"],
+    var arrHex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"],
 
         strHex = "0x",
 
@@ -142,37 +115,25 @@ function randomColor() {
 
 }
 
-
-
 //初始化性能插件
 
 var stats;
-
-
 
 function initStats() {
 
     stats = new Stats();
 
-    document.body.appendChild(stats.dom);
+    $(".model3d").append(stats.dom);
 
 }
-
-
 
 //用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
 
 var controls;
 
-
-
 function initControls() {
 
-
-
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-
 
     // 如果使用animate方法时，将此函数删除
 
@@ -208,8 +169,6 @@ function initControls() {
 
 }
 
-
-
 //生成gui设置配置项
 
 var gui;
@@ -220,25 +179,117 @@ function initGui() {
 
     gui = {
 
+        "size": 4,
 
+        "transparent": true,
+
+        "opacity": 1,
+
+        "vertexColors": true,
+
+        "color": 0xffffff,
+
+        "sizeAttenuation": true,
+
+        "rotateSystem": false,
+
+        redraw: function() {
+
+            if(cloud) {
+
+                scene.remove(cloud);
+
+            }
+
+            createParticles(gui.size, gui.transparent, gui.opacity, gui.vertexColors, gui.sizeAttenuation, gui.color);
+
+            //设置是否自动旋转
+
+            controls.autoRotate = gui.rotateSystem;
+
+        }
 
     };
 
-    var datGui = new dat.GUI();
+    //var datGui = new dat.GUI();
 
-    //将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
+    //      //将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）gui.add(controls, 'size', 0, 10).onChange(controls.redraw);
+    //
+    //      datGui.add(gui, 'transparent').onChange(gui.redraw);
+    //
+    //      datGui.add(gui, 'opacity', 0, 1).onChange(gui.redraw);
+    //
+    //      datGui.add(gui, 'vertexColors').onChange(gui.redraw);
+    //
+    //      datGui.addColor(gui, 'color').onChange(gui.redraw);
+    //
+    //      datGui.add(gui, 'sizeAttenuation').onChange(gui.redraw);
+    //
+    //      datGui.add(gui, 'rotateSystem').onChange(gui.redraw);
+
+    gui.redraw();
 
 }
 
+//生成粒子的方法
 
+function createParticles(size, transparent, opacity, vertexColors, sizeAttenuation, color) {
+
+    //存放粒子数据的网格
+
+    var geom = new THREE.Geometry();
+
+    //样式化粒子的THREE.PointCloudMaterial材质
+
+    var material = new THREE.PointCloudMaterial({
+
+        size: size,
+
+        transparent: transparent,
+
+        opacity: opacity,
+
+        vertexColors: vertexColors,
+
+        sizeAttenuation: sizeAttenuation,
+
+        color: color
+
+    });
+
+    var range = 500;
+
+    for(var i = 0; i < 15000; i++) {
+
+        var particle = new THREE.Vector3(Math.random() * range - range / 2, Math.random() * range - range / 2, Math.random() * range - range / 2);
+
+        geom.vertices.push(particle);
+
+        var color = new THREE.Color(+randomColor());
+
+        //.setHSL ( h, s, l ) h — 色调值在0.0和1.0之间 s — 饱和值在0.0和1.0之间 l — 亮度值在0.0和1.0之间。 使用HSL设置颜色。
+
+        //随机当前每个粒子的亮度
+
+        color.setHSL(color.getHSL().h, color.getHSL().s, Math.random() * color.getHSL().l);
+
+        geom.colors.push(color);
+
+    }
+
+    //生成模型，添加到场景当中
+
+    cloud = new THREE.PointCloud(geom, material);
+
+    scene.add(cloud);
+
+}
 
 function render() {
 
     renderer.render(scene, camera);
 
 }
-
-
 
 //窗口变动触发的函数
 
@@ -252,11 +303,7 @@ function onWindowResize() {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-
-
 }
-
-
 
 function animate() {
 
@@ -266,17 +313,13 @@ function animate() {
 
     render();
 
-
-
     //更新性能插件
 
-    stats.update();
+    //stats.update();
 
     requestAnimationFrame(animate);
 
 }
-
-
 
 function draw() {
 
@@ -292,7 +335,9 @@ function draw() {
 
     initControls();
 
+    //initStats();
 
+    initGui();
 
     animate();
 
