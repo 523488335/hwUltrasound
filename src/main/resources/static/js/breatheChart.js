@@ -32,16 +32,16 @@ $.ajax({
 								r_series = this.series[2],
 								i = 0;                                
 								setInterval(function() {                                    
-									l_series.addPoint([left[i].x, left[i].y], true, false);                    
-									c_series.addPoint([center[i].x, center[i].y], true, false);                    
-									r_series.addPoint([right[i].x, right[i].y], true, false);  
+									l_series.addPoint([left[i].x, left[i].y], true, true);                    
+									c_series.addPoint([center[i].x, center[i].y], true, true);                    
+									r_series.addPoint([right[i].x, right[i].y], true, true);  
 									i++;
 								}, 150);                                                   
 							}                                                               
 						}                                                                   
 					},                                                                      
 					title: {                                                                
-						text: '呼吸速率--1秒'                                            
+						text: '呼吸速率'                                            
 					},                                                                      
 					xAxis: {                                                                
 						type: 'datetime',                                                   
@@ -49,7 +49,7 @@ $.ajax({
 					},                                                                      
 					yAxis: {                                                                
 						title: {                                                            
-							text: '呼吸速率--1秒'                                                   
+							text: '呼吸速率'                                                   
 						},                                                                  
 						plotLines: [{                                                       
 							value: 0,                                                       
@@ -86,7 +86,13 @@ $.ajax({
 						data: (function() {                                                 
 							// generate an array of random data                             
 							var data = [],                                                  
-								time = (new Date()).getTime();                                                          
+								time = left[0].x;
+							for (i = -60; i <= 0; i++) {                                    
+								data.push({                                                 
+									x: time + i * 150,                                     
+									y: 140                                        
+								});                                                         
+							}
 							return data;                                                    
 						})()                                                                
 					},{                                                              
@@ -105,7 +111,13 @@ $.ajax({
 						data: (function() {                                                 
 							// generate an array of random data                             
 							var data = [],                                                  
-								time = (new Date()).getTime();                                                          
+								time = center[0].x;
+							for (i = -60; i <= 0; i++) {                                    
+								data.push({                                                 
+									x: time + i * 150,                                     
+									y: 330                                        
+								});                                                         
+							}
 							return data;                                                    
 						})()                                                                
 					},{                                                              
@@ -124,7 +136,13 @@ $.ajax({
 						data: (function() {                                                 
 							// generate an array of random data                             
 							var data = [],                                                  
-								time = (new Date()).getTime();                                                          
+								time = right[0].x;  
+							for (i = -60; i <= 0; i++) {                                    
+								data.push({                                                 
+									x: time + i * 150,                                     
+									y: 190                                        
+								});                                                         
+							}
 							return data;                                                    
 						})()                                                                
 					}]                                                                      
