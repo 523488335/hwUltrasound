@@ -157,7 +157,6 @@ $(function() {
 		async:true,
 		dataType:"json",
 		success: function(data) {
-			console.log(data);
 			vm.height(data[0].height);
 			vm.weight(data[0].width);
 			vm.age(data[0].age);
@@ -173,7 +172,6 @@ $(function() {
 				async:true,
 				dataType:"json",
 				success: function(data2) {
-					console.log(data2);
 					vm.chekDesc(data2[0].description);
 					vm.chiefComplaint(data2[0].principal);
 					vm.pastHistory(data2[0].history);
@@ -189,7 +187,6 @@ $(function() {
 		async:true,
 		dataType:"json",
 		success: function(data) {
-			console.log(data);
 			for (var i = 0; i < data.length; i++) {
 				showImage(data[i].imageId,data[i].left == true ? "left" : "right", data[i].path);
 			}
@@ -204,10 +201,10 @@ $("#3dmodel").on('click',function () {
 		type:"post",
 		url:"/info/pointSet",
 		async:true,
-		data:{"patientId":"patientId"},
+		data:{"patientDataId":patientDataId},
 		dataType:"json",
 		success:function (data) {
-			console.log(data)
+			console.log(data);
 		}
 	});
 })
