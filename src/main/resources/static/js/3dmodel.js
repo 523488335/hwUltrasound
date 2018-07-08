@@ -9,7 +9,7 @@ function initRender() {
 
     //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(868, 374);
 
     $(".model3d").append(renderer.domElement);
 

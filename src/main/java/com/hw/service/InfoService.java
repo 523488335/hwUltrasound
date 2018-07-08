@@ -21,7 +21,7 @@ import com.hw.bean.Point;
 import com.hw.bean.Point2d;
 import com.hw.exception.ErrorCode;
 import com.hw.exception.HwException;
-import com.mysql.fabric.xmlrpc.base.Data;
+
 
 @Service
 public class InfoService {
