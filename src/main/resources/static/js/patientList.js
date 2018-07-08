@@ -116,7 +116,7 @@ $(function() {
 	}
 	
 	/**
-	 *	获取患者检查历史
+	 *	获取患者诊断记录
 	 * */
 	// function updata() {
 	$("body").on("click",'.updated',function(){

@@ -125,7 +125,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-12 col-lg-12">
 									<div class="pull-right search-btn">
-										<button class="btn btn-primary bt-search" data-bind="click:search"><i class="fa fa-search"></i>&nbsp;查询</button>
+										<button class="btn btn-primary bt-search" data-bind="click:search" style="background-color:#1aa1e6;border-color: #1aa1e6;"><i class="fa fa-search"></i>&nbsp;查询</button>
 									</div>
 								</div>
 							</div>
@@ -206,22 +206,22 @@
                         <a href="#" data-bind="text: $data.pageNumber, click: function() { $root.gotoPage($data.pageNumber); }">1</a>
                     </li> -->
 					<li class="active">
-					<a href="#" data-bind="text:pageIndex">1</a>
+					<a href="#" data-bind="text:pageIndex" style="background: #1aa1e6;border-color: #1aa1e6;">1</a>
 					</li>
 					</ul>
 					<ul class="pagination pagination-sm">
-					<li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0}" class="disabled">
-                        <a href="#" data-i18n="sys:pagination.end" data-bind="click: last">尾页</a>
-                    </li>
-                    <li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0 }" class="disabled">
-                        <a href="#" data-i18n="sys:pagination.next" data-bind="click: next" class="next">下一页</a>
-                    </li>
-					<li  class="disabled">
-					<a href="#"  data-bind="click: last">尾页</a>
-					</li>
-					<li  class="disabled">
-					<a href="#"  data-bind="click: next">下一页</a>
-					</li>
+						<li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0 }" class="disabled">
+							<a href="#" data-i18n="sys:pagination.next" data-bind="click: next" class="next">下一页</a>
+						</li>
+						<li data-bind="css: { disabled: pageIndex() === pageCount() || pageCount()===0}" class="disabled">
+							<a href="#" data-i18n="sys:pagination.end" data-bind="click: last">尾页</a>
+						</li>
+					<!--<li  class="disabled">-->
+					<!--<a href="#"  data-bind="click: last">尾页</a>-->
+					<!--</li>-->
+					<!--<li  class="disabled">-->
+					<!--<a href="#"  data-bind="click: next">下一页</a>-->
+					<!--</li>-->
 					
 					</ul>
 					</div>
