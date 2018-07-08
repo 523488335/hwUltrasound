@@ -1,3 +1,6 @@
+var patientId = getQueryVariable("patientId");
+var patientDataId = getQueryVariable("patientDataId");
+
 // 顶部自动走的时间
 (function() {
 	var time = $(".time");
@@ -144,8 +147,7 @@ $(function() {
 	 * 调用方法:getQueryVariable("name")
 	 * 返回值:tyler
 	 */
-	var patientId = getQueryVariable("patientId");
-	var patientDataId = getQueryVariable("patientDataId");
+
 
 	/*填充数据进模态框*/
 	$.ajax({
@@ -197,7 +199,18 @@ $(function() {
 });
 
 //加载3D图像
-
+$("#3dmodel").on('click',function () {
+	$.ajax({
+		type:"post",
+		url:"/info/pointSet",
+		async:true,
+		data:{"patientId":"patientId"},
+		dataType:"json",
+		success:function (data) {
+			console.log(data)
+		}
+	});
+})
 
 // 双向数据绑定
 function ViewModel() {
@@ -303,8 +316,8 @@ function ViewModel() {
 	self.download = function() {
 		/*
 		 	下载的思路：
-		 	1、再上面self.save 保存的时候，我们就需要将图片的信息 （保存的时间，图片数据）--push到全局imgArr
-		 	2、再点击 self.download时,操作的并不是缩略图的图片，而是imgArr中保存的
+		 	1、在上面self.save 保存的时候，我们就需要将图片的信息 （保存的时间，图片数据）--push到全局imgArr
+		 	2、在点击 self.download时,操作的并不是缩略图的图片，而是imgArr中保存的
 		 	3、右侧缩略图是调用self.save方法，每张图片都会对应一个时间，如果连续点击相同图片下载，本地文件名是相同的。
 		 * */
 		var _fixType = function(type) {
