@@ -79,7 +79,7 @@
 	</style>
 </head>
 
-<body>
+<body onload="draw()">
 <div class="container-fluid">
 	<!--顶部-->
 	<div class="row top-bg">
@@ -354,7 +354,7 @@
 		<!--功能-->
 		<div class="tab-pane fade in active" id="features">
 			<div class="row">
-				<div class="col-sm-5 col-md-5 col-lg-5">
+				<div class="col-sm-12 col-md-12 col-lg-12">
 					<div class="btn-group btn-group-1 btn-list " role="group">
 						<button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#info">
 							<div class="circle">
@@ -373,6 +373,12 @@
 								<i class="fa fa-linode fa-2x"></i>
 							</div>
 							<span>模型</span>
+						</button>
+						<button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#">
+							<div class="circle">
+								<i class="fa fa-area-chart fa-2x"></i>
+							</div>
+							<span>呼吸</span>
 						</button>
 					</div>
 
@@ -660,7 +666,7 @@
 				<h4 class="modal-title" id="myModalLabel">3D模型</h4>
 			</div>
 			<div class="modal-body">
-				<div></div>
+				<div class="model3d"></div>
 			</div>
 			<div class="modal-footer">
 				<div class="row">
@@ -695,6 +701,7 @@
 <!--3d模型three.js-->
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
+<script src="js/dat.gui.min.js"></script>
 <script src="js/3dmodel.js"></script>
 
 </html>
