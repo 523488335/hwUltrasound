@@ -15,5 +15,5 @@ public interface PatientDataMapper extends JpaRepository<PatientData, Long>{
 	List<PatientData> findByPatientIdOrderByDate(Integer patientId);
 	
 	@Query
-	List<PatientData> findByPatientDataIdOrderByDate(Integer patientDataId);
+	List<PatientData> findByPatientDataId(Integer patientDataId);
 }

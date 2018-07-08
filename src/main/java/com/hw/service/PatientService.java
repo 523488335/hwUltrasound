@@ -96,7 +96,7 @@ public class PatientService {
     }
 	
 	public List<PatientData> getViewModel(Integer id) {
-        return patientDataMapper.findByPatientDataIdOrderByDate(id);
+        return patientDataMapper.findByPatientDataId(id);
     }
 	
 	/**

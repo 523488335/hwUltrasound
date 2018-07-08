@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>瀚维智能乳腺筛查系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/patientList.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<div class="panel">
+				<div class="panel-heading">
+					原始数据列表
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive" style="overflow-x: auto;">
+						<table class="table table-striped table-condensed table-bordered table-hover" style="min-width: 1000px;">
+							<thead>
+							<tr>
+								<th style="width: 100px;">文件</th>
+								<th style="width: 60px;">浏览</th>
+								<th style="width: 60px;">下载</th>
+								<!--<th>操作</th>-->
+							</tr>
+							</thead>
+							<tbody class="palist"></tbody>
+						</table>
+					</div>
+				</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/knockout-3.4.2.js"></script>
+
+</html>

@@ -131,7 +131,7 @@ $(function() {
 				$(".history-tr").remove();
 				console.log(data);
 				for (var i = 0; i<data.length; i++){
-					$(".history").append("<tr class='history-tr'><td>"+(i+1)+"</td><td>"+data[i].description+"</td><td>"+data[i].principal+"</td><td>"+data[i].history+"</td><td>"+data[i].date+"</td><td>"+data[i].source+"</td><td>"+data[i].type+"</td><td><a href='index.html?patientDataId="+data[i].patientDataId+"&patientId=" + data[i].patientId + "'>"+data[i].status+"</a></td></tr>");
+					$(".history").append("<tr class='history-tr'><td>"+(i+1)+"</td><td>"+data[i].description+"</td><td>"+data[i].principal+"</td><td>"+data[i].history+"</td><td>"+data[i].date+"</td><td>"+data[i].source+"</td><td>"+data[i].type+"</td><td><a href='index.html?patientDataId="+data[i].patientDataId+"&patientId=" + data[i].patientId + "'>"+data[i].status+"</a></td><td><a href='data.html?dataPath="+data[i].dataPath+"'>查看</a></td></tr>");
 				}
 				$(".patient-history").css("display","block");
 				console.log(data)

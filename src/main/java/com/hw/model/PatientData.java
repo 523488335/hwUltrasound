@@ -56,6 +56,9 @@ public class PatientData implements Serializable{
 
 	@Column
     private Integer age;
+	
+	@Column
+    private String dataPath;
 
     public Integer getPatientDataId() {
 		return patientDataId;
@@ -160,4 +163,13 @@ public class PatientData implements Serializable{
     public void setAge(Integer age) {
         this.age = age;
     }
+
+	public String getDataPath() {
+		return dataPath;
+	}
+
+	public void setDataPath(String dataPath) {
+		this.dataPath = dataPath;
+	}
+    
 }
