@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>瀚维智能乳腺筛查系统</title>
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script type="text/javascript">
+var left;
+var center;
+var right;
+$.ajax({
+	url:"/info/point2dSet",
+	data:{'patientDataId':2},
+	type: "POST",
+	async:true,
+	dataType:"json",
+	success: function(data) {
+		left = data.left;
+		center = data.center;
+		right = data.right;
+		$(function () {                                                                     
+			$(document).ready(function() {                                                  
+				Highcharts.setOptions({                                                     
+					global: {                                                               
+						useUTC: false                                                       
+					}                                                                       
+				});                                                                         
+				var chart;         
+				$('#container').highcharts({                                                
+					chart: {                                                                
+						type: 'spline',                                                     
+						animation: Highcharts.svg, // don't animate in old IE               
+						marginRight: 10,                                                    
+						events: {                                                           
+							load: function() {                                              
+								console.log(left);															
+								// set up the updating of the chart each second             
+								var l_series = this.series[0],
+								c_series = this.series[1],
+								r_series = this.series[2],
+								i = 0;                                
+								setInterval(function() {                                    
+									l_series.addPoint([left[i].x, left[i].y], true, false);                    
+									c_series.addPoint([center[i].x, center[i].y], true, false);                    
+									r_series.addPoint([right[i].x, right[i].y], true, false);  
+									i++;
+								}, 1000);                                                   
+							}                                                               
+						}                                                                   
+					},                                                                      
+					title: {                                                                
+						text: '呼吸速率--1秒'                                            
+					},                                                                      
+					xAxis: {                                                                
+						type: 'datetime',                                                   
+						tickPixelInterval: 100                                              
+					},                                                                      
+					yAxis: {                                                                
+						title: {                                                            
+							text: '呼吸速率--1秒'                                                   
+						},                                                                  
+						plotLines: [{                                                       
+							value: 0,                                                       
+							width: 1,                                                       
+							color: '#808080'                                                
+						}]                                                                  
+					},                                                                      
+					tooltip: {                                                              
+						formatter: function() {                                             
+								return '<b>'+ this.series.name +'</b><br/>'+                
+								Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+								Highcharts.numberFormat(this.y, 2);                         
+						}                                                                   
+					},                                                                      
+					legend: {                                                               
+						enabled: true                                                      
+					},                                                                      
+					exporting: {                                                            
+						enabled: false                                                      
+					},                                                                      
+					series: [{                                                              
+						name: 'left',                                                
+						data: (function() {                                                 
+							// generate an array of random data                             
+							var data = [],                                                  
+								time = (new Date()).getTime();                                                          
+							return data;                                                    
+						})()                                                                
+					},{                                                              
+						name: 'center',                                                
+						data: (function() {                                                 
+							// generate an array of random data                             
+							var data = [],                                                  
+								time = (new Date()).getTime();                                                          
+							return data;                                                    
+						})()                                                                
+					},{                                                              
+						name: 'right',                                                
+						data: (function() {                                                 
+							// generate an array of random data                             
+							var data = [],                                                  
+								time = (new Date()).getTime();                                                          
+							return data;                                                    
+						})()                                                                
+					}]                                                                      
+				});                                                                         
+			});                                                                             
+																							
+			});  
+	}
+})
+             
+</script>
+</head>
+
+<body>
+
+<div id="container" style="width:700px;height:400px;margin:0 auto;"></div>
+<div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
