@@ -19,9 +19,10 @@ import com.hw.exception.HwException;
 public class FileController {
 
 	/**
-     *      url：/socket/send
-     *      参数：无
-     *      返回：查询当前页面数据
+     * @deprecated 下载文件
+     * @param url /file/downloads
+     * @param path 文件路径
+     * @return 文件输出流
 	 * @throws HwException 
      */
     @RequestMapping("/downloads")
@@ -66,9 +67,10 @@ public class FileController {
         }
     }
     /**
-     *      url：/socket/send
-     *      参数：无
-     *      返回：查询当前页面数据
+     * @deprecated 浏览器打开文件
+     * @param url /file/open
+     * @param path 文件路径
+     * @return 文件输出流
 	 * @throws HwException 
      */
     @RequestMapping("/open")

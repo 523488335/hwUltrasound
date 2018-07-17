@@ -159,11 +159,9 @@ $(function() {
 		success: function(data) {
 			vm.height(data[0].height);
 			vm.weight(data[0].width);
-			vm.age(data[0].age);
 			vm.name(data[0].name);
 			vm.patientID(data[0].patientId);
 			vm.sex(data[0].sex);
-			vm.age(data[0].age);
 			vm.birthday(data[0].birthday);
 			$.ajax({
 				url:"getViewModel",
@@ -176,10 +174,31 @@ $(function() {
 					vm.chiefComplaint(data2[0].principal);
 					vm.pastHistory(data2[0].history);
 					vm.age(data2[0].age);
+					
+					vm.deviceNo(data2[0].deviceId);
+					vm.breastFinding(data2[0].breastFinding);
+					vm.oxterFinding(data2[0].oxterFinding);
+					document.getElementById("hint").innerHTML = data2[0].hint;
+					
+					vm.source(data2[0].source)
+					vm.type(data2[0].type)
+//					vm.deviceNo(data2[0].deviceId);
+					console.log(data2[0])
+					
+					if(data2[0].status == '未操作'){
+						$.ajax({
+							url:"updatePatientData",
+							data:{'patientDataId':patientDataId,'status':'已操作'},
+							type: "POST",
+							async:true,
+							dataType:"json"
+						})
+					}
 				}
 			})
 		},
 	})
+	
 	$.ajax({
 		url:"getPatientImage",
 		data:{'patientDataId':patientDataId},
@@ -580,15 +599,21 @@ function ViewModel() {
 	self.height = ko.observable(); // 身高
 	self.weight = ko.observable(); // 体重奶
 	self.isEnable = ko.observable(false);
-	self.age = ko.observable();
-	self.name = ko.observable();
 	self.patientID = ko.observable();
-	self.sex = ko.observable();
-	self.age = ko.observable();
 	self.birthday = ko.observable();
 	self.source = ko.observable();
+	
+	//报表字段
+	self.name = ko.observable();
+	self.sex = ko.observable();
+	self.age = ko.observable();
+	self.source = ko.observable();
+	self.deviceNo = ko.observable();
 	self.type = ko.observable();
-
+	self.breastFinding = ko.observable();
+	self.oxterFinding = ko.observable();
+//	self.hint = ko.observable();
+	
 	
 	// 该方法应该再没有用到---别删除
 	self.save = function() {
@@ -638,7 +663,6 @@ function ViewModel() {
 				});
 			});
 		});
-
 	}
 	/*废弃上面的 save*/
 	
@@ -1044,6 +1068,15 @@ function showImage(id,position,src) {
     	$(".right-content .img-content-right").append(image);
     }
 }
+$('#reportSure').click(function () {
+	$.ajax({
+		url:"updatePatientData",
+		data:{'patientDataId':patientDataId,'status':'操作完成'},
+		type: "POST",
+		async:true,
+		dataType:"json"
+	})
+})
 function getQueryVariable(variable)
 {
 	var query = window.location.search.substring(1);

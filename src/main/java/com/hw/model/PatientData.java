@@ -22,6 +22,9 @@ public class PatientData implements Serializable{
     private Integer patientDataId;
 	
 	@Column
+	private Integer deviceId;
+	
+	@Column
     private Integer patientId;
 
 	@Column
@@ -59,6 +62,15 @@ public class PatientData implements Serializable{
 	
 	@Column
     private String dataPath;
+	
+	@Column
+	private String breastFinding;
+	
+	@Column
+	private String oxterFinding;
+	
+	@Column
+	private String hint;
 
     public Integer getPatientDataId() {
 		return patientDataId;
@@ -79,8 +91,42 @@ public class PatientData implements Serializable{
     public String getDescription() {
         return description;
     }
+    
+    
+    
+    public Integer getDeviceId() {
+		return deviceId;
+	}
 
-    public void setDescription(String description) {
+	public void setDeviceId(Integer deviceId) {
+		this.deviceId = deviceId;
+	}
+
+	public String getBreastFinding() {
+		return breastFinding;
+	}
+
+	public void setBreastFinding(String breastFinding) {
+		this.breastFinding = breastFinding;
+	}
+
+	public String getOxterFinding() {
+		return oxterFinding;
+	}
+
+	public void setOxterFinding(String oxterFinding) {
+		this.oxterFinding = oxterFinding;
+	}
+
+	public String getHint() {
+		return hint;
+	}
+
+	public void setHint(String hint) {
+		this.hint = hint;
+	}
+
+	public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
     }
 

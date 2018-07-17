@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import java.io.IOException;
+import java.util.List;
 
 @RestController
-public class PatientMapperController {
+public class PatientController {
 	
     @Autowired
     private PatientService patientService;
@@ -22,19 +24,25 @@ public class PatientMapperController {
     private ImageService imageService;
 
     /**
-     *      url：getCurrPage
-     *      参数：无
-     *      返回：查询当前页面数据
+     * @deprecated 翻页：翻到当前页面
+     * @param url /getCurrPage
+     * @return 当前页面患者列表
      */
     @RequestMapping("getCurrPage")
     public Object getPatientByPage(){
     	return patientService.getCurrPage();
     }
     
+    @RequestMapping("updatePatientData")
+    public Object updatePatientData(Integer patientDataId, String status){
+    	patientService.updatePatientData(patientDataId, status);
+    	return "true";
+    }
+    
     /**
-     *      url：getFristPage
-     *      参数：无
-     *      返回：查询首页面数据
+     * @deprecated 翻页：翻到第一页
+     * @param url /getFristPage
+     * @return 首页面患者列表
      */
     @RequestMapping("getFristPage")
     public Object getFristPage(){
@@ -42,9 +50,9 @@ public class PatientMapperController {
     }
     
     /**
-     *      url：getLastPage
-     *      参数：无
-     *      返回：查询最后页面数据
+     * @deprecated 翻页：翻到最后一页
+     * @param url /getLastPage
+     * @return 最后一页患者列表
      */
     @RequestMapping("getLastPage")
     public Object getLastPage(){
@@ -52,9 +60,9 @@ public class PatientMapperController {
     }
     
     /**
-     *      url：getPreviousPage
-     *      参数：无
-     *      返回：查询上一页面数据
+     * @deprecated 翻页：翻到前一页
+     * @param url /getPreviousPage
+     * @return 前一页患者列表
      */
     @RequestMapping("getPreviousPage")
     public Object getPreviousPage(){
@@ -62,10 +70,9 @@ public class PatientMapperController {
     }
     
     /**
-     *      url：getNextPage
-     *      参数：无
-     *      返回：查询上一页面数据
-     * @throws HwException 
+     * @deprecated 翻页：翻到下一页
+     * @param url /getNextPage
+     * @return 下一页患者列表
      */
     @RequestMapping("getNextPage")
     public Object getNextPage() throws HwException{
@@ -73,9 +80,9 @@ public class PatientMapperController {
     }
     
     /**
-     *      url：getAllPatient
-     *      参数：无
-     *      返回：查询表中所有数据
+     * @deprecated 获得全部患者列表
+     * @param url /getAllPatient
+     * @return 全部患者列表
      */
     @RequestMapping("getAllPatient")
     public Object getAllPatientTable(){
@@ -84,9 +91,9 @@ public class PatientMapperController {
     }
 
     /**
-     *      url：getPatientById
-     *      参数：int PatientId
-     *      返回：根据PatientId查询
+     * @deprecated 查询患者：条件ID
+     * @param url /getPatientById
+     * @return 患者信息
      */
     @RequestMapping("getPatientById")
     public Object getPatientById(Patient patient){
@@ -95,9 +102,9 @@ public class PatientMapperController {
     }
 
     /**
-     *      url：getHistoryPatientById
-     *      参数：int PatientId
-     *      返回：返回包括历史病例的所有数据，按时间降序排序
+     * @deprecated 查询患者病例：条件ID
+     * @param url /getHistoryPatientById
+     * @return 患者诊断信息
      */
     @RequestMapping("getHistoryPatientById")
     public Object getHistoryPatient(Patient patient){
@@ -106,9 +113,9 @@ public class PatientMapperController {
     }
 
     /**
-     *      url：getPatientByCondition
-     *      参数：Patient patient
-     *      返回：返回条件检索查询出来的患者列表
+     * @deprecated 查询患者：条件ID，Name,Sex
+     * @param url /getPatientByCondition
+     * @return 患者信息
      */
     @RequestMapping("getPatientByCondition")
     public Object getPatientByCondition(Patient patient){
@@ -116,18 +123,20 @@ public class PatientMapperController {
     }
 
     /**
-     *      url：getViewModel
-     *      参数：int patientId, String date
-     *      返回：根据检查时间，返回一个患者的所有信息（填充信息模态框）
+     * @deprecated 查询患者病例：条件ID
+     * @param url /getViewModel
+     * @return 患者病例信息
      */
     @RequestMapping("getViewModel")
     public Object getViewModel(PatientData patientData){
-        return patientService.getViewModel(patientData.getPatientDataId());
+    	List<PatientData> list = patientService.getViewModel(patientData.getPatientDataId());
+    	System.out.println(list.get(0));
+        return list;
     }
     /**
-     *      url：getViewModel
-     *      参数：int patientId, String date
-     *      返回：根据检查时间，返回一个患者的所有信息（填充信息模态框）
+     * @deprecated 查询患者诊断图片：条件ID
+     * @param url /getPatientImage
+     * @return 患者诊断图片
      */
     @RequestMapping("getPatientImage")
     public Object getPatientImage(PatientData patientData){
@@ -136,10 +145,9 @@ public class PatientMapperController {
     }
     
     /**
-     *      url：deleteImageById
-     *      参数：int imageId
-     *      返回：根据检查时间，返回一个患者的所有信息（填充信息模态框）
-     * @throws HwException 
+     * @deprecated 删除患者诊断图片：条件ID
+     * @param url /deleteImageById
+     * @return 是否成功
      */
     @RequestMapping("deleteImageById")
     public Object deleteImageById(Image image) throws HwException{
@@ -149,9 +157,9 @@ public class PatientMapperController {
     }
     
     /**
-     *      url：/-Saveimg
-     *      参数：String canvas,int PatientDataId,boolean isLeft
-     *      返回：保存缩略图
+     * @deprecated 删除患者诊断图片：条件ID
+     * @param url /saveImg
+     * @return 是否成功
      */
 	@RequestMapping("saveImg")
     public Object saveOriginalImg(Image image) throws IOException {
@@ -160,9 +168,9 @@ public class PatientMapperController {
 	}
 	
 	/**
-     *      url：/-saveProcessedImg
-     *      参数：String canvas,int PatientDataId,boolean isLeft
-     *      返回：保存缩略图
+     * @deprecated 保存医生修改后的患者诊断图片
+     * @param url /saveProcessedImg
+     * @return 是否成功
      */
 	@RequestMapping("saveProcessedImg")
     public Object saveProcessedImg(Image image) throws IOException {

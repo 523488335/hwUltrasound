@@ -20,10 +20,9 @@ public class UserController {
     private UserService userService;
 
     /**
-     *      url：getAllUser
-     *      参数：无
-     *      返回：查询表中所有数据
-     * */
+     * @deprecated 查询用户表所有用户
+     * @param url /getAllUser
+     */
     @RequestMapping("getAllUser")
     public Object getAllUser(){
         System.out.println("------------查询用户表所有用户------------");
@@ -31,10 +30,10 @@ public class UserController {
     }
 
     /**
-     *      url：getUserById
-     *      参数：无
-     *      返回：根据id查询数据
-     * */
+     * @deprecated 查询用户：条件Id
+     * @param url /getAllUser
+     * @param Id 用户Id
+     */
     @RequestMapping("getUserById")
     public User getUserById(User user){
         System.out.println("------------查询Id="+user.getUserId()+"的用户------------");
@@ -43,10 +42,12 @@ public class UserController {
 
 
     /**
-     *      url：getUserByUser
-     *      参数：无
-     *      返回：根据username，password查询数据
-     * */
+     * @deprecated 登入
+     * @param url /getUserByUser
+     * @param username 用户名
+     * @param password 密码
+     * @return 是否登入成功
+     */
     @RequestMapping("getUserByUser")
     public Object getUserByUser(HttpSession session,User user) throws ServletException, IOException {
         try {
@@ -57,19 +58,17 @@ public class UserController {
     }
 
     /**
-     *      url：LogOut
-     *      参数：无
-     *      返回：销毁当前session（注销用户）
-     * */
+     * @deprecated 注销
+     * @param url /LogOut
+     */
     @RequestMapping("LogOut")
     public void LogOut(HttpSession session){
     	userService.LogOut(session);
     }
     /**
-     *      url：getSession
-     *      参数：无
-     *      返回：获取当前用户
-     * */
+     * @deprecated 获取登入用户信息
+     * @param url /getSession
+     */
     @RequestMapping("getSession")
     public Object getSession(HttpSession session){
         return session.getAttribute("user");

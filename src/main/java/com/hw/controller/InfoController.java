@@ -27,11 +27,10 @@ public class InfoController {
 	private PatientDataMapper patientDataMapper;
 	
 	/**
-	 * 
-     *      url：/info/data
-     *      参数：无
-     *      返回：查找目录下文件
-	 * @throws HwException 
+     * @deprecated 获得病人原始数据目录列表
+     * @param url /info/data
+     * @param dataPath 原始数据目录
+     * @return 原始数据文件目录列表
 	 * @throws FileNotFoundException 
      */
     @RequestMapping("/data")
@@ -41,10 +40,11 @@ public class InfoController {
     }
     
     /**
-     *      参数：无
-     *      返回：向下位机发送数据
-	 * @throws HwException 
-	 * @throws FileNotFoundException 
+     * @deprecated 获得呼吸数据点
+     * @param url /info/point2dSet
+     * @param patientDataId 病例号
+     * @return 胸型3d点集合
+	 * @throws HwException,FileNotFoundException 
      */
     @RequestMapping("/pointSet")
     public Object pointSet(int patientDataId) throws HwException, FileNotFoundException{
@@ -52,10 +52,11 @@ public class InfoController {
     	return infoService.pasePointSet(patientData.getDataPath());
     }
     /**
-     *      参数：无
-     *      返回：向下位机发送数据
-	 * @throws HwException 
-	 * @throws FileNotFoundException 
+     * @deprecated 获得呼吸数据点集合
+     * @param url /info/point2dSet
+     * @param patientDataId 病例号
+     * @return 呼吸数据点集合
+	 * @throws HwException,FileNotFoundException 
      */
     @RequestMapping("/point2dSet")
     public Object point2dSet(int patientDataId) throws HwException, FileNotFoundException{
@@ -68,8 +69,11 @@ public class InfoController {
     }
     
     /**
-     * 实现文件下载
-     **/
+     * @deprecated 文件下载
+     * @param url /info/download
+     * @param filename 文件路径
+     * @return 文件流
+     */
     @RequestMapping("/download")
     public String downLoad(HttpServletRequest request,HttpServletResponse response){
     	if(infoService.fileDownload(request.getParameter("filename"), response)){

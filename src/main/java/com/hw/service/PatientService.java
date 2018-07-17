@@ -99,6 +99,12 @@ public class PatientService {
         return patientDataMapper.findByPatientDataId(id);
     }
 	
+	public void updatePatientData(Integer patientDataId, String status){
+		PatientData p = patientDataMapper.findByPatientDataId(patientDataId).get(0);
+		p.setStatus(status);
+		patientDataMapper.save(p);
+	}
+	
 	/**
 	 * 条件查询
 	 * @param name

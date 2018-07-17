@@ -20,10 +20,9 @@ public class SocketController {
 	private SocketService socketService;
 	
 	/**
-	 * 
-     *      url：/socket/send
-     *      参数：无
-     *      返回：向下位机发送数据
+     * @deprecated 向连接者发送指令
+     * @param url /socket/send
+     * @param path 文件路径
 	 * @throws HwException 
      */
     @RequestMapping("/send")
@@ -32,11 +31,9 @@ public class SocketController {
     	return "true";
     }
     /**
-     *      url：/socket/start
-     *      参数：无
-     *      返回：开启socket服务，等待下位机连接
-     * @throws IOException 
-     * @throws NumberFormatException 
+     * @deprecated 启动socket服务器
+     * @param url /socket/send
+     * @param port socket服务器端口
 	 * @throws HwException 
      */
     @RequestMapping("/start")
@@ -46,12 +43,9 @@ public class SocketController {
     	return "true";
     }
     /**
-     *      url：/socket/stop
-     *      参数：无
-     *      返回：开启socket服务，等待下位机连接
-     * @throws IOException 
-     * @throws NumberFormatException 
-	 * @throws HwException 
+     * @deprecated 停止socket服务器
+     * @param url /socket/stop
+	 * @throws NumberFormatException, IOException 
      */
     @RequestMapping("/stop")
     public Object stop() throws NumberFormatException, IOException {

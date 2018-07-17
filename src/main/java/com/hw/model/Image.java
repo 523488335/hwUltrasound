@@ -18,6 +18,9 @@ public class Image implements Serializable{
 	private Long imageId;
 	
 	@Column
+	private Integer deviceId;
+	
+	@Column
 	private Integer patientDataId;
 	
 	@Column
@@ -32,6 +35,18 @@ public class Image implements Serializable{
 	public short getType() {
 		return type;
 	}
+
+	public Integer getDeviceId() {
+		return deviceId;
+	}
+
+
+
+	public void setDeviceId(Integer deviceId) {
+		this.deviceId = deviceId;
+	}
+
+
 
 	public void setType(short type) {
 		this.type = type;
