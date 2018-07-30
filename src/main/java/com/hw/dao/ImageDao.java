@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ImageMapper extends JpaRepository<Image, Long>,JpaSpecificationExecutor<Image>{
+public interface ImageDao extends JpaRepository<Image, Long>,JpaSpecificationExecutor<Image>{
 	
 	@Query
 	List<Image> findByImageId(Long imageId);

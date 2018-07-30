@@ -1,4 +1,4 @@
-package com.hw.controller;
+package com.hw.cto;
 
 import java.io.IOException;
 
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hw.exception.HwException;
-import com.hw.service.SocketService;
+import com.hw.service.SocketSvc;
 
 
 @RestController
 @RequestMapping("/socket")
-public class SocketController {
+public class SocketCto {
 
 	@Autowired
-	private SocketService socketService;
+	private SocketSvc socketSvc;
 	
 	/**
      * @deprecated 向连接者发送指令
@@ -27,7 +27,7 @@ public class SocketController {
      */
     @RequestMapping("/send")
     public Object sendMessage(String mode) throws HwException{
-    	socketService.sendMessage(mode);
+    	socketSvc.sendMessage(mode);
     	return "true";
     }
     /**
@@ -39,7 +39,7 @@ public class SocketController {
     @RequestMapping("/start")
     public Object start(HttpServletRequest request) throws NumberFormatException, IOException {
     	String port = request.getParameter("port");
-		socketService.start(Integer.parseInt(port));
+		socketSvc.start(Integer.parseInt(port));
     	return "true";
     }
     /**
@@ -49,7 +49,7 @@ public class SocketController {
      */
     @RequestMapping("/stop")
     public Object stop() throws NumberFormatException, IOException {
-		socketService.stop();
+		socketSvc.stop();
     	return "true";
     }
 }

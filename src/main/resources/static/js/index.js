@@ -140,6 +140,17 @@ $(function() {
 	let vm = new ViewModel();
 	ko.applyBindings(vm);
 	
+	$('#reportSure').click(function () {
+		$.ajax({
+			url:"submitReport",
+			data:{'patientDataId':patientDataId,'status':'操作完成','breastFinding':$('#breastFinding').val(),
+				'oxterFinding':$('#oxterFinding').val(),'hint':$('#hint').val()},
+			type: "POST",
+			async:true,
+			dataType:"json"
+		})
+	})
+	
 	/**
 	 * 获取指定的URL参数值
 	 * URL:http://www.quwan.com/index?name=tyler
@@ -178,7 +189,7 @@ $(function() {
 					vm.deviceNo(data2[0].deviceId);
 					vm.breastFinding(data2[0].breastFinding);
 					vm.oxterFinding(data2[0].oxterFinding);
-					document.getElementById("hint").innerHTML = data2[0].hint;
+					vm.hint(data2[0].hint);
 					
 					vm.source(data2[0].source)
 					vm.type(data2[0].type)
@@ -224,7 +235,7 @@ function load3dmodel() {
 		data:{"patientDataId":patientDataId},
 		dataType:"json",
 		success:function (data) {
-			console.log(data);
+//			console.log(data);
 			draw();
 			var renderer;
 			function initRender() {
@@ -612,7 +623,7 @@ function ViewModel() {
 	self.type = ko.observable();
 	self.breastFinding = ko.observable();
 	self.oxterFinding = ko.observable();
-//	self.hint = ko.observable();
+	self.hint = ko.observable();
 	
 	
 	// 该方法应该再没有用到---别删除
@@ -1068,15 +1079,7 @@ function showImage(id,position,src) {
     	$(".right-content .img-content-right").append(image);
     }
 }
-$('#reportSure').click(function () {
-	$.ajax({
-		url:"updatePatientData",
-		data:{'patientDataId':patientDataId,'status':'操作完成'},
-		type: "POST",
-		async:true,
-		dataType:"json"
-	})
-})
+
 function getQueryVariable(variable)
 {
 	var query = window.location.search.substring(1);

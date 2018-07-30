@@ -11,17 +11,17 @@ import com.hw.command.Session;
 import com.hw.command.Manager;
 import com.hw.command.Request;
 import com.hw.command.Response;
-import com.hw.dao.MessageMapper;
+import com.hw.dao.MessageDao;
 import com.hw.exception.HwException;
 import com.hw.model.Message;
 
 @Service
-public class SocketService {
+public class SocketSvc {
 
 	private static Session conection;
 	
 	@Autowired
-	private MessageMapper messageMapper;
+	private MessageDao messageDao;
 	
 	public void start(int port) throws IOException{
 		conection = new Session(Manager.getInstance());
@@ -42,7 +42,7 @@ public class SocketService {
 				message.setRespId(response.getId());
 				message.setMsg(response.getMsg());
 				message.setState(response.getState());
-				messageMapper.save(message);
+				messageDao.save(message);
 			}
 		});
 	}

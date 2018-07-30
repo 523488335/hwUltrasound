@@ -537,7 +537,6 @@ function captureImage(video,position) {
 	
 	if(position === "left") {
     	$(".right-content .img-content-left").append(image).css("border-bottom","2px dashed blue");
-    	
     }
     if(position === "right") {
     	$(".right-content .img-content-right").append(image);

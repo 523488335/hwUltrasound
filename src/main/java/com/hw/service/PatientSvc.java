@@ -16,20 +16,16 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.hw.bean.PageBean;
-import com.hw.dao.PatientDataMapper;
-import com.hw.dao.PatientMapper;
+import com.hw.dao.PatientDao;
 import com.hw.exception.ErrorCode;
 import com.hw.exception.HwException;
 import com.hw.model.Patient;
-import com.hw.model.PatientData;
 
 @Service
-public class PatientService {
+public class PatientSvc {
 
 	@Autowired
-	private PatientMapper patientMapper;
-	@Autowired
-	private PatientDataMapper patientDataMapper;
+	private PatientDao patientDao;
 	
 	private Specification<Patient> specification = null;
 	private int lastPageNum = 1;
@@ -38,19 +34,19 @@ public class PatientService {
 	Pageable currPage = PageRequest.of(0, PAGESIZE);
 	
 	public PageBean<Patient> getCurrPage() {
-		Page<Patient> page = patientMapper.findAll(specification, currPage);
+		Page<Patient> page = patientDao.findAll(specification, currPage);
 		return getPageBean(page);
 	}
 	
 	public PageBean<Patient> getFristPage() {
 		currPage = currPage.first();
-		Page<Patient> page = patientMapper.findAll(specification, currPage);
+		Page<Patient> page = patientDao.findAll(specification, currPage);
 		return getPageBean(page);
 	}
 	
 	public PageBean<Patient> getLastPage() {
 		currPage = PageRequest.of(lastPageNum, PAGESIZE);
-		Page<Patient> page = patientMapper.findAll(specification, currPage);
+		Page<Patient> page = patientDao.findAll(specification, currPage);
 		return getPageBean(page);
 	}
 	
@@ -60,18 +56,18 @@ public class PatientService {
 		}
 		currPage = currPage.next();
 		System.out.println(currPage.getPageNumber() + "," + lastPageNum);
-		Page<Patient> page = patientMapper.findAll(specification, currPage);
+		Page<Patient> page = patientDao.findAll(specification, currPage);
 		return getPageBean(page);
 	}
 	
 	public PageBean<Patient> getPreviousPage() {
 		currPage = currPage.previousOrFirst();
-		Page<Patient> page = patientMapper.findAll(specification, currPage);
+		Page<Patient> page = patientDao.findAll(specification, currPage);
 		return getPageBean(page);
 	}
 	
 	public List<Patient> getAllPatient(){
-		return patientMapper.findAll();
+		return patientDao.findAll();
 	}
 	
 	public PageBean<Patient> getPageBean(Page<Patient> page){
@@ -88,22 +84,8 @@ public class PatientService {
 	}
 	
 	public List<Patient> getPatientById(Integer id) {
-        return patientMapper.findByPatientId(id);
+        return patientDao.findByPatientId(id);
     }
-	
-	public List<PatientData> getHistoryPatient(Integer id) {
-        return patientDataMapper.findByPatientIdOrderByDate(id);
-    }
-	
-	public List<PatientData> getViewModel(Integer id) {
-        return patientDataMapper.findByPatientDataId(id);
-    }
-	
-	public void updatePatientData(Integer patientDataId, String status){
-		PatientData p = patientDataMapper.findByPatientDataId(patientDataId).get(0);
-		p.setStatus(status);
-		patientDataMapper.save(p);
-	}
 	
 	/**
 	 * 条件查询

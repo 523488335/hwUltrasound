@@ -78,7 +78,6 @@ public class Session {
 	/**
 	 * 接收消息线程，负责接收下位机消息，处理过后交给消息调度器Manager
 	 * @author 陈尚均
-	 *
 	 */
 	private class recvThread extends Thread {
 		
@@ -128,6 +127,7 @@ public class Session {
 		writer.flush();
 		manager.register(request, callBack);
 	}
+	
 	public void sendMessage(Request message) throws HwException{
 		manager.register(message, null);
 	}

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PatientMapper extends JpaRepository<Patient, Long>,JpaSpecificationExecutor<Patient>{
+public interface PatientDao extends JpaRepository<Patient, Long>,JpaSpecificationExecutor<Patient>{
 	
 	@Query
 	List<Patient> findByPatientId(Integer patientId);

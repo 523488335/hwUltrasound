@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "patient_data", catalog = "hw_ultrasonic_data_jpa")
-public class PatientData implements Serializable{
+public class Diagnostic implements Serializable{
 	
 	private static final long serialVersionUID = 5232230492820239984L;
 
@@ -217,5 +217,13 @@ public class PatientData implements Serializable{
 	public void setDataPath(String dataPath) {
 		this.dataPath = dataPath;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "PatientData [patientDataId=" + patientDataId + ", deviceId=" + deviceId + ", patientId=" + patientId
+				+ ", description=" + description + ", principal=" + principal + ", history=" + history + ", userId="
+				+ userId + ", status=" + status + ", video=" + video + ", report=" + report + ", source=" + source
+				+ ", type=" + type + ", date=" + date + ", age=" + age + ", dataPath=" + dataPath + ", breastFinding="
+				+ breastFinding + ", oxterFinding=" + oxterFinding + ", hint=" + hint + "]";
+	}
 }

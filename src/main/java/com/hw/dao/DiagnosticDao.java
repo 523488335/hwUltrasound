@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.hw.model.PatientData;
+import com.hw.model.Diagnostic;
 
 @Repository
-public interface PatientDataMapper extends JpaRepository<PatientData, Long>{
+public interface DiagnosticDao extends JpaRepository<Diagnostic, Long>{
 	
 	@Query
-	List<PatientData> findByPatientIdOrderByDate(Integer patientId);
+	List<Diagnostic> findByPatientIdOrderByDate(Integer patientId);
 	
 	@Query
-	List<PatientData> findByPatientDataId(Integer patientDataId);
+	List<Diagnostic> findByPatientDataId(Integer patientDataId);
 }

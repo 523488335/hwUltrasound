@@ -1,4 +1,4 @@
-package com.hw.controller;
+package com.hw.cto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-class IndexController {
+class IndexCto {
 	
     @RequestMapping("/")
     public String index() {

@@ -16,14 +16,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.hw.dao.ImageMapper;
+import com.hw.dao.ImageDao;
 import com.hw.exception.ErrorCode;
 import com.hw.exception.HwException;
 import com.hw.model.Image;
 import com.hw.tools.FileUtils;
 
 @Service
-public class ImageService {
+public class ImageSvc {
 	
 	public static final short ORIGINAL = 1,PROCESSED = 2;
 	
@@ -31,7 +31,7 @@ public class ImageService {
 	public String fileUploadPath;
 
 	@Autowired
-	private ImageMapper imageMapper;
+	private ImageDao imageDao;
 	
 	public void saveOriginalImg(Image image) throws IOException {
 		String filename = new Date().getTime() + ".png";
@@ -44,7 +44,7 @@ public class ImageService {
     	FileUtils.saveImage(image.getPath(), path);
     	image.setPath(fileUploadPath + "originalImage/" + filename);
     	image.setType(ORIGINAL);
-    	imageMapper.save(image);
+    	imageDao.save(image);
 	}
 	
 	public void saveProcessedImg(Image image) throws IOException {
@@ -58,28 +58,28 @@ public class ImageService {
     	FileUtils.saveImage(image.getPath(), path);
     	image.setPath(fileUploadPath + "processedImage/" + filename);
     	image.setType(PROCESSED);
-    	imageMapper.save(image);
+    	imageDao.save(image);
 	}
 	
 	/**
 	 * 查询视频截图原图
 	 */
 	public List<Image> getOriginalImage(Integer patientDataId){
-		return imageMapper.findByType(ORIGINAL);
+		return imageDao.findByType(ORIGINAL);
 	}
 	
 	/**
 	 * 查询视频截图编辑后图片
 	 */
 	public List<Image> getProcessedImage(Integer patientDataId){
-		return imageMapper.findByType(PROCESSED);
+		return imageDao.findByType(PROCESSED);
 	}
 	
 	/**
 	 * 查询原图和编辑后的图片
 	 */
 	public List<Image> getOriginalAndProcessedImage(Integer patientDataId){
-		return imageMapper.findAll(new Specification<Image>() {
+		return imageDao.findAll(new Specification<Image>() {
 
 			private static final long serialVersionUID = -4710613362535875930L;
 
@@ -87,11 +87,12 @@ public class ImageService {
 			public Predicate toPredicate(Root<Image> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 				// TODO Auto-generated method stub
 				List<Predicate> list = new ArrayList<>();
-				list.add(criteriaBuilder.equal(root.get("type").as(short.class),1));
-				list.add(criteriaBuilder.equal(root.get("type").as(short.class),2));
+				list.add(criteriaBuilder.or(criteriaBuilder.equal(root.get("type").as(short.class),1), 
+						criteriaBuilder.equal(root.get("type").as(short.class),2)));
+				list.add(criteriaBuilder.equal(root.get("patientDataId").as(short.class),patientDataId));
 				Predicate[] predicates = new Predicate[list.size()];
 				list.toArray(predicates);
-				return criteriaBuilder.or(predicates);
+				return criteriaBuilder.and(predicates);
 			}
 		});
 	}
@@ -101,12 +102,12 @@ public class ImageService {
 	 * @throws HwException 
 	 */
 	public void deleteImageById(Long id) throws HwException{
-		List<Image> list = imageMapper.findByImageId(id);
+		List<Image> list = imageDao.findByImageId(id);
 		if (list == null || list.size() == 0) {
 			throw new HwException(ErrorCode.非法参数, "没有对应id的图片");
 		}
 		File image = new File(list.get(0).getPath());
 		image.delete();
-		imageMapper.deleteById(id);
+		imageDao.deleteById(id);
 	}
 }

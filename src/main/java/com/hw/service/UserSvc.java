@@ -7,16 +7,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hw.dao.UserMapper;
+import com.hw.dao.UserDao;
 import com.hw.exception.ErrorCode;
 import com.hw.exception.HwException;
 import com.hw.model.User;
 
 @Service
-public class UserService {
+public class UserSvc {
 	
 	@Autowired
-	private UserMapper userMapper;
+	private UserDao userDao;
 	
 	public List<User> Login(HttpSession session, String username, String password) throws HwException{
 		List<User> list = null;
@@ -36,7 +36,7 @@ public class UserService {
 	}
 	
 	public List<User> findByUsername(String username){
-		return userMapper.findByUsername(username);
+		return userDao.findByUsername(username);
 	}
 	
 	public void LogOut(HttpSession session){
@@ -44,11 +44,11 @@ public class UserService {
     }
 	
 	public User getUserById(Integer id){
-        return userMapper.findByUserId(id).get(0);
+        return userDao.findByUserId(id).get(0);
     }
 	
 	public List<User> getAllUser(){
         System.out.println("------------查询用户表所有用户------------");
-        return userMapper.findAll();
+        return userDao.findAll();
     }
 }

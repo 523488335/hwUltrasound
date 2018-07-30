@@ -24,7 +24,7 @@ import com.hw.exception.HwException;
 
 
 @Service
-public class InfoService {
+public class InfoSvc {
 	public final static String BREATHE_FILE_LEFT = "chest_left"; 
 	public final static String BREATHE_FILE_CENTER = "chest_center"; 
 	public final static String BREATHE_FILE_RIGHT = "chest_right"; 
@@ -34,6 +34,7 @@ public class InfoService {
 	public List<String> parsePath(String path) throws FileNotFoundException, HwException{
 		List<String> list = new ArrayList<>();
 		File file = new File(path);
+		System.out.println("=========" + path + "===========");
 		if (!(file.exists() && file.isDirectory())) {
 			throw new HwException(ErrorCode.非法参数, "参数必须为目录路径");
 		}

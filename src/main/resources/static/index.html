@@ -613,11 +613,12 @@
                                 <img src="images/3.jpg" class="img-responsive center-block"/>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-lg-4">
-                            <div style="float: left;">
-                                <img src="images/3.jpg" class="img-responsive center-block"/>
-                            </div>
-                        </div>
+                        <button class="btn btn-group-lg" type="button" data-toggle="modal" data-target="#3dmodel">
+							<div class="circle">
+								<i class="fa fa-linode fa-2x"></i>
+							</div>
+							<span>模型</span>
+						</button>
                     </div>
                 </div>
                 <div class="opinion">
@@ -627,20 +628,20 @@
                     <div class="" style="margin-left: 70px;">
                         <p>双侧乳腺扫查：</p>
                         <div class="" style="margin-right: 70px;">
-                        <span style="margin-left: 30px;" data-bind="text:breastFinding">双乳各层组织结构清晰，腺体组织呈均质纤维纤体型背景回声。双乳导管未见明显扩张，左乳可见多发低回声肿物，较大者范围2.5*0.7cm，内可见少许液性成分，CDFI：肿物内外未见明确血流信号。</span>
+                        <textarea id="breastFinding" style="margin-left: 30px;height: 40%;width: 100%;" data-bind="text:breastFinding">双乳各层组织结构清晰，腺体组织呈均质纤维纤体型背景回声。双乳导管未见明显扩张，左乳可见多发低回声肿物，较大者范围2.5*0.7cm，内可见少许液性成分，CDFI：肿物内外未见明确血流信号。</textarea>
                         <p style="margin-top: 20px;">双腋下扫查：</p>
-                        <span style="margin-left: 30px;" data-bind="text:oxterFinding">左腋下组可见一淋巴结，不规则，边缘不规整，淋巴门消失，1.3*1.4cm，未见血流信号。右腋下未见明显异常淋巴结。</span>
+                        <textarea id="oxterFinding" style="margin-left: 30px;height: 40%;width: 100%;" data-bind="text:oxterFinding">左腋下组可见一淋巴结，不规则，边缘不规整，淋巴门消失，1.3*1.4cm，未见血流信号。右腋下未见明显异常淋巴结。</textarea>
                     </div>
                 </div>
                 <div class="prompt">
                     <div>
                         <h5>超声提示：</h5>
                     </div>
-                    <div class="" id="hint" style="margin-left: 70px;" data-bind="text:hint">
-                        	左乳多发肿物一性质待查（BI-RADS：4A）；</br>
-                        	右乳未见明确异常（BI-RADS：1）；</br>
-                        	双腋下未见明显异常淋巴结。</br>
-                    </div>
+                    <textarea id="hint" style="margin-left: 70px;height: 200%;width:90%;" data-bind="text:hint">
+                        	左乳多发肿物一性质待查（BI-RADS：4A）；
+                        	右乳未见明确异常（BI-RADS：1）；
+                        	双腋下未见明显异常淋巴结。
+                    </textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -655,6 +656,7 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal -->
+</div>
 </div>
 <!-- 模态框结束 -->
 

@@ -1,4 +1,4 @@
-package com.hw.controller;
+package com.hw.cto;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -16,7 +16,7 @@ import com.hw.exception.HwException;
 
 @RestController
 @RequestMapping("/file")
-public class FileController {
+public class FileCto {
 
 	/**
      * @deprecated 下载文件
