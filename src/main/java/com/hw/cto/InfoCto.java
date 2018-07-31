@@ -28,7 +28,6 @@ public class InfoCto {
 	
 	/**
      * @deprecated 获得病人原始数据目录列表
-     * @param url /info/data
      * @param dataPath 原始数据目录
      * @return 原始数据文件目录列表
 	 * @throws FileNotFoundException 
@@ -41,7 +40,6 @@ public class InfoCto {
     
     /**
      * @deprecated 获得呼吸数据点
-     * @param url /info/point2dSet
      * @param patientDataId 病例号
      * @return 胸型3d点集合
 	 * @throws HwException,FileNotFoundException 
@@ -54,7 +52,6 @@ public class InfoCto {
     }
     /**
      * @deprecated 获得呼吸数据点集合
-     * @param url /info/point2dSet
      * @param patientDataId 病例号
      * @return 呼吸数据点集合
 	 * @throws HwException,FileNotFoundException 
@@ -71,7 +68,6 @@ public class InfoCto {
     
     /**
      * @deprecated 文件下载
-     * @param url /info/download
      * @param filename 文件路径
      * @return 文件流 
      */

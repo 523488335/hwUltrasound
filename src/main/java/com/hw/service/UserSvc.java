@@ -23,7 +23,7 @@ public class UserSvc {
 		if(username == null || password == null){
 			throw new HwException(ErrorCode.非法参数, "用户名和密码不能为null");
 		}
-		list = findByUsername(username);
+		list = getUser(username);
 		if (list == null || list.size() == 0) {
 			throw new HwException(ErrorCode.流程出错, "账户不存在");
 		}
@@ -35,11 +35,11 @@ public class UserSvc {
         return list;
 	}
 	
-	public List<User> findByUsername(String username){
+	public List<User> getUser(String username){
 		return userDao.findByUsername(username);
 	}
 	
-	public void LogOut(HttpSession session){
+	public void invalidSession(HttpSession session){
     	session.invalidate();
     }
 	
@@ -48,7 +48,6 @@ public class UserSvc {
     }
 	
 	public List<User> getAllUser(){
-        System.out.println("------------查询用户表所有用户------------");
         return userDao.findAll();
     }
 }

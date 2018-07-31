@@ -39,7 +39,7 @@ public class InfoSvc {
 			throw new HwException(ErrorCode.非法参数, "参数必须为目录路径");
 		}
 		for(String p : file.list()){
-			if (p.contains(".txt") || p.contains(".log")) {
+			if (!p.contains(".py")) {
 				list.add(p);
 			}
 		}

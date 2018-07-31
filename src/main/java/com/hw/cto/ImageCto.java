@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hw.dao.ImageDao;
 import com.hw.exception.HwException;
 import com.hw.model.Diagnostic;
 import com.hw.model.Image;
@@ -19,7 +20,6 @@ public class ImageCto {
 	
 	/**
      * @deprecated 查询患者诊断图片：条件ID
-     * @param url /getPatientImage
      * @return 患者诊断图片
      */
     @RequestMapping("getPatientImage")
@@ -32,19 +32,17 @@ public class ImageCto {
     
     /**
      * @deprecated 删除患者诊断图片：条件ID
-     * @param url /deleteImageById
      * @return 是否成功
      */
     @RequestMapping("deleteImageById")
     public Object deleteImageById(Image image) throws HwException{
         System.out.println("------------删除id：" + image.getImageId() + "的图片------------------------");
-        imageSvc.deleteImageById(image.getImageId());
+        imageSvc.deleteImage(image.getImageId());
         return "true";
     }
     
     /**
      * @deprecated 删除患者诊断图片：条件ID
-     * @param url /saveImg
      * @return 是否成功
      */
 	@RequestMapping("saveImg")
@@ -54,8 +52,28 @@ public class ImageCto {
 	}
 	
 	/**
+     * @deprecated 将图片添加到报表
+     * @return 是否成功
+     */
+    @RequestMapping("addReport")
+    public Object addReport(long id) throws HwException{
+    	System.out.println(id);
+        imageSvc.addReport(id);
+        return "true";
+    }
+    
+    /**
+     * @deprecated 将图片添加到报表
+     * @return 是否成功
+     */
+    @RequestMapping("rmReport")
+    public Object rmReport(long id) throws HwException{
+        imageSvc.rmReport(id);
+        return "true";
+    }
+	
+	/**
      * @deprecated 保存医生修改后的患者诊断图片
-     * @param url /saveProcessedImg
      * @return 是否成功
      */
 	@RequestMapping("saveProcessedImg")

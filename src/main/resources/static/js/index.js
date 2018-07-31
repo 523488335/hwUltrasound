@@ -131,9 +131,6 @@ $(function() {
 					//return t.length && alert(JSON.stringify(t)), !0
 				}
 		});
-		
-		
-
 	});
 
 	// 监控数据变化
@@ -142,7 +139,7 @@ $(function() {
 	
 	$('#reportSure').click(function () {
 		$.ajax({
-			url:"submitReport",
+			url:"saveReport",
 			data:{'patientDataId':patientDataId,'status':'操作完成','breastFinding':$('#breastFinding').val(),
 				'oxterFinding':$('#oxterFinding').val(),'hint':$('#hint').val()},
 			type: "POST",
@@ -219,10 +216,12 @@ $(function() {
 		success: function(data) {
 			for (var i = 0; i < data.length; i++) {
 				showImage(data[i].imageId,data[i].left == true ? "left" : "right", data[i].path);
+				if (data[i].report == true) {
+					$('#reportImgs').append('<div id="' + data[i].imageId + '" class="col-xs-12 col-sm-4 col-lg-4"><div style="float: left;"><img src="/file/downloads?path=' + data[i].path + '" class="img-responsive center-block"/></div></div>');
+				}
 			}
 		},
 	})
-	/*填充数据进模态框*/
 });
 
 //加载3D图像
@@ -763,21 +762,51 @@ function ViewModel() {
 	}
 	// 滚动到顶部
 	self.scrollToTop = function() {
-		$(".right-content").scrollTop(1);
-
-		if($(".right-content").scrollTop() > 0) {
-			$(".right-content").scrollTop(0);
+		let obj = getImage(deleteObj);
+		$.ajax({
+			url:"rmReport",
+			data:{'id':obj.id},
+			type: "POST",
+			async:true,
+			dataType:"json"
+		})
+		if($('#reportImgs').find('#' + obj.id)){
+			$('#reportImgs').find('#' + obj.id).remove();
 		}
 	}
 	// 滚动到底部
 	self.scrollToBottom = function() {
-		let obj = $(".right-content")[0];
-		console.log(obj);
-		// 判断是否出现滚动条
-		if(obj.scrollHeight > obj.clientHeight || obj.offsetHeight > obj.clientHeight) {
-			//$(".right-content").scrollTop(parseInt(obj.scrollHeight));
-			obj.scrollTop = obj.scrollHeight;
+		let obj = getImage(deleteObj);
+		$.ajax({
+			url:"addReport",
+			data:{'id':obj.id},
+			type: "POST",
+			async:true,
+			dataType:"json"
+		})
+		if ($('#reportImgs').find('#' + obj.id).length > 0) {
+			alert("重复添加")
+			return;
 		}
+		$('#reportImgs').append('<div id="' + obj.id + '" class="col-xs-12 col-sm-4 col-lg-4"><div style="float: left;"><img src="' + obj.imgSource.src + '" class="img-responsive center-block"/></div></div>');
+	}
+}
+
+function getImage(deleteObj) {
+	if(isExitImg()) {
+		//console.log(deleteObj,204);
+		var index = deleteObj.index;
+		var deletePosition = deleteObj.isLeftOrRight;
+		
+		if(deletePosition === "left") {
+			obj = imgLeftArr[index];
+		} else {
+			obj = imgRightArr[index];
+		}
+		return obj;
+	} else {
+		console.log("右侧没有缩略图");
+		return null;
 	}
 }
 /*将canvas转为图片*/

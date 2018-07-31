@@ -71,14 +71,12 @@ public class PatientSvc {
 	}
 	
 	public PageBean<Patient> getPageBean(Page<Patient> page){
-		System.out.println();
 		PageBean<Patient> pageBean = new PageBean<>();
 		pageBean.setPageIndex(page.getNumber() + 1);
 		pageBean.setPageSize(page.getNumberOfElements());
 		pageBean.setPageCount(page.getTotalPages());
 		pageBean.setTotalCount(page.getTotalElements());
 		pageBean.setList(page.getContent());
-		System.out.println(pageBean);
 		lastPageNum = pageBean.getPageCount() - 1;
 		return pageBean;
 	}
@@ -95,14 +93,7 @@ public class PatientSvc {
 	 * @return
 	 */
 	public PageBean<Patient> getPatientByCondition(String name, String sex, Integer id) {
-		if (sex.equals("1")) {
-			sex = "男";
-		} else if (sex.equals("2")){
-			sex = "女";
-		} else {
-			sex = null;
-		}
-		final String finalSex = sex;
+		final String finalSex = sex.equals("1") ? "男" : (sex.equals("2") ? "女" : null); 
 		specification = new Specification<Patient>() {
 			
 			private static final long serialVersionUID = -4059012909212817626L;

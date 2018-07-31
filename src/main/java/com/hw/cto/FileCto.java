@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +19,12 @@ public class FileCto {
 
 	/**
      * @deprecated 下载文件
-     * @param url /file/downloads
      * @param path 文件路径
      * @return 文件输出流
 	 * @throws HwException 
      */
     @RequestMapping("/downloads")
-    public void downloads(HttpServletRequest request,HttpServletResponse response) throws HwException{
-    	String path = request.getParameter("path");
+    public void downloads(String path, HttpServletResponse response) throws HwException{
     	File file = new File(path);
         if(file.exists()){ //判断文件父目录是否存在
         	if(path.lastIndexOf("/") != -1){
@@ -68,14 +65,12 @@ public class FileCto {
     }
     /**
      * @deprecated 浏览器打开文件
-     * @param url /file/open
      * @param path 文件路径
      * @return 文件输出流
 	 * @throws HwException 
      */
     @RequestMapping("/open")
-    public void open(HttpServletRequest request,HttpServletResponse response) throws HwException{
-    	String path = request.getParameter("path");
+    public void open(String path, HttpServletResponse response) throws HwException{
     	File file = new File(path);
         if(file.exists()){ //判断文件父目录是否存在
         	if(path.lastIndexOf("/") != -1){

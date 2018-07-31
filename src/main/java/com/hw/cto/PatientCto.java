@@ -16,7 +16,6 @@ public class PatientCto {
 
     /**
      * @deprecated 翻页：翻到当前页面
-     * @param url /getCurrPage
      * @return 当前页面患者列表
      */
     @RequestMapping("getCurrPage")
@@ -26,7 +25,6 @@ public class PatientCto {
     
     /**
      * @deprecated 翻页：翻到第一页
-     * @param url /getFristPage
      * @return 首页面患者列表
      */
     @RequestMapping("getFristPage")
@@ -36,7 +34,6 @@ public class PatientCto {
     
     /**
      * @deprecated 翻页：翻到最后一页
-     * @param url /getLastPage
      * @return 最后一页患者列表
      */
     @RequestMapping("getLastPage")
@@ -46,7 +43,6 @@ public class PatientCto {
     
     /**
      * @deprecated 翻页：翻到前一页
-     * @param url /getPreviousPage
      * @return 前一页患者列表
      */
     @RequestMapping("getPreviousPage")
@@ -56,7 +52,6 @@ public class PatientCto {
     
     /**
      * @deprecated 翻页：翻到下一页
-     * @param url /getNextPage
      * @return 下一页患者列表
      */
     @RequestMapping("getNextPage")
@@ -66,7 +61,6 @@ public class PatientCto {
     
     /**
      * @deprecated 获得全部患者列表
-     * @param url /getAllPatient
      * @return 全部患者列表
      */
     @RequestMapping("getAllPatient")
@@ -77,7 +71,6 @@ public class PatientCto {
 
     /**
      * @deprecated 查询患者：条件ID
-     * @param url /getPatientById
      * @return 患者信息
      */
     @RequestMapping("getPatientById")
@@ -88,7 +81,6 @@ public class PatientCto {
 
     /**
      * @deprecated 查询患者：条件ID，Name,Sex
-     * @param url /getPatientByCondition
      * @return 患者信息
      */
     @RequestMapping("getPatientByCondition")

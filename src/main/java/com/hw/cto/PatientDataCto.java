@@ -22,15 +22,14 @@ public class PatientDataCto {
     	return "true";
     }
     
-    @RequestMapping("submitReport")
+    @RequestMapping("saveReport")
     public Object submitReport(Diagnostic patientData){
-    	diagnosticSvc.submitReport(patientData);
+    	diagnosticSvc.saveReport(patientData);
     	return "true";
     }
     
     /**
      * @deprecated 查询患者病例：条件ID
-     * @param url /getViewModel
      * @return 患者病例信息
      */
     @RequestMapping("getViewModel")
@@ -42,13 +41,10 @@ public class PatientDataCto {
     
     /**
      * @deprecated 查询患者病例：条件ID
-     * @param url /getHistoryPatientById
      * @return 患者诊断信息
      */
     @RequestMapping("getHistoryPatientById")
     public Object getHistoryPatient(Patient patient){
-        System.out.println("------------查询id："+patient.getPatientId()+"的历史病例------------------------");
         return diagnosticSvc.getHistoryPatient(patient.getPatientId());
     }
-    
 }

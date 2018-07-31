@@ -27,6 +27,9 @@ public class Image implements Serializable{
 	private boolean isLeft;
 	
 	@Column
+	private boolean isReport;
+	
+	@Column
 	private String path;
 	
 	@Column
@@ -39,8 +42,6 @@ public class Image implements Serializable{
 	public Integer getDeviceId() {
 		return deviceId;
 	}
-
-
 
 	public void setDeviceId(Integer deviceId) {
 		this.deviceId = deviceId;
@@ -76,6 +77,14 @@ public class Image implements Serializable{
 		this.isLeft = isLeft;
 	}
 
+	public boolean isReport() {
+		return isReport;
+	}
+
+	public void setReport(boolean isReport) {
+		this.isReport = isReport;
+	}
+
 	public String getPath() {
 		return path;
 	}
@@ -83,11 +92,4 @@ public class Image implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
-
-	@Override
-	public String toString() {
-		return "Image [imageId=" + imageId + ", patientDataId=" + patientDataId + ", isLeft=" + isLeft + ", path="
-				+ path + ", type=" + type + "]";
-	}
-	
 }

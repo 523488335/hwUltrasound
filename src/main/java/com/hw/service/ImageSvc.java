@@ -1,10 +1,13 @@
 package com.hw.service;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -37,7 +40,6 @@ public class ImageSvc {
 		String filename = new Date().getTime() + ".png";
 		File path = new File(fileUploadPath + "originalImage");
 		if (!path.exists()) {
-			System.out.println("create dir " + path.getAbsolutePath());
 			path.mkdirs();
 		}
 		path = new File(path, filename);
@@ -51,7 +53,6 @@ public class ImageSvc {
 		String filename = new Date().getTime() + ".png";
 		File path = new File(fileUploadPath + "processedImage");
 		if (!path.exists()) {
-			System.out.println("create dir " + path.getAbsolutePath());
 			path.mkdirs();
 		}
 		path = new File(path, filename);
@@ -97,11 +98,23 @@ public class ImageSvc {
 		});
 	}
 	
+	public void addReport(Long id) throws HwException{
+		Image image = getImage(id);
+        image.setReport(true);
+        imageDao.save(image);
+	}
+	
+	public void rmReport(Long id) throws HwException {
+		Image image = getImage(id);
+        image.setReport(false);
+        imageDao.save(image);
+	}
+	
 	/**
 	 * 删除图片byID
 	 * @throws HwException 
 	 */
-	public void deleteImageById(Long id) throws HwException{
+	public void deleteImage(Long id) throws HwException{
 		List<Image> list = imageDao.findByImageId(id);
 		if (list == null || list.size() == 0) {
 			throw new HwException(ErrorCode.非法参数, "没有对应id的图片");
@@ -109,5 +122,14 @@ public class ImageSvc {
 		File image = new File(list.get(0).getPath());
 		image.delete();
 		imageDao.deleteById(id);
+	}
+
+	public Image getImage(Long id) throws HwException {
+		// TODO Auto-generated method stub
+		List<Image> list = imageDao.findByImageId(id);
+		if (list == null || list.size() == 0) {
+			throw new HwException(ErrorCode.非法参数, "没有对应id的图片");
+		}
+		return list.get(0);
 	}
 }

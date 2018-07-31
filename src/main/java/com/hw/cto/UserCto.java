@@ -21,7 +21,6 @@ public class UserCto {
 
     /**
      * @deprecated 查询用户表所有用户
-     * @param url /getAllUser
      */
     @RequestMapping("getAllUser")
     public Object getAllUser(){
@@ -31,7 +30,6 @@ public class UserCto {
 
     /**
      * @deprecated 查询用户：条件Id
-     * @param url /getAllUser
      * @param Id 用户Id
      */
     @RequestMapping("getUserById")
@@ -43,7 +41,6 @@ public class UserCto {
 
     /**
      * @deprecated 登入
-     * @param url /getUserByUser
      * @param username 用户名
      * @param password 密码
      * @return 是否登入成功
@@ -59,15 +56,14 @@ public class UserCto {
 
     /**
      * @deprecated 注销
-     * @param url /LogOut
      */
     @RequestMapping("LogOut")
-    public void LogOut(HttpSession session){
-    	userSvc.LogOut(session);
+    public void logOut(HttpSession session){
+    	userSvc.invalidSession(session);
     }
+    
     /**
      * @deprecated 获取登入用户信息
-     * @param url /getSession
      */
     @RequestMapping("getSession")
     public Object getSession(HttpSession session){

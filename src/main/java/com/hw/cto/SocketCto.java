@@ -21,7 +21,6 @@ public class SocketCto {
 	
 	/**
      * @deprecated 向连接者发送指令
-     * @param url /socket/send
      * @param path 文件路径
 	 * @throws HwException 
      */
@@ -32,7 +31,6 @@ public class SocketCto {
     }
     /**
      * @deprecated 启动socket服务器
-     * @param url /socket/send
      * @param port socket服务器端口
 	 * @throws HwException 
      */
@@ -44,7 +42,6 @@ public class SocketCto {
     }
     /**
      * @deprecated 停止socket服务器
-     * @param url /socket/stop
 	 * @throws NumberFormatException, IOException 
      */
     @RequestMapping("/stop")

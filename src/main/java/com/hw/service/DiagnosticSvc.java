@@ -28,7 +28,7 @@ public class DiagnosticSvc {
 		diagnosticDao.save(p);
 	}
 	
-	public void submitReport(Diagnostic patientData){
+	public void saveReport(Diagnostic patientData){
 		System.out.println(patientData);
 		Diagnostic p = diagnosticDao.findByPatientDataId(patientData.getPatientDataId()).get(0);
 		p.setBreastFinding(patientData.getBreastFinding());
